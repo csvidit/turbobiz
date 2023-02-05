@@ -1,8 +1,25 @@
 import React from "react";
 
-const Title = (props: {children: any}) =>
+const Subtitle = (props: {children: any, size: string}) =>
 {
-    return(<h2 className="text-5xl text-slate-600 dark:text-slate-400">{props.children}</h2>)
+    let classes = "text-red-600 dark:text-red-400"
+    if(props.size === "" || props.size === "lg")
+    {
+        classes+=" text-5xl";
+    }
+    else if(props.size === "md")
+    {
+       classes+=" text-3xl";
+    }
+    else if(props.size === "sm")
+    {
+        classes+=" text-xl";
+    }
+    else
+    {
+        classes+=" text-5xl";
+    }
+    return(<h2 className={classes}>{props.children}</h2>)
 }
 
-export default Title;
+export default Subtitle;

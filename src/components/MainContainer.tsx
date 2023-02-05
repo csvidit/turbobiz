@@ -3,9 +3,9 @@ import { Darker_Grotesque } from "@next/font/google";
 
 const dg = Darker_Grotesque({
     variable: "--darker-grotesque-font",
-    weight: "300",
     subsets: ["latin"],
-  });
+    weight: "300"
+});
 
 const MainContainer = (props: {children: any}) =>
 {

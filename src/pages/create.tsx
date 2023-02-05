@@ -1,15 +1,24 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
-import styles from "@/styles/Home.module.css";
 import MainContainer from "../components/MainContainer";
 import MainContent from "../components/MainContent";
 import Header from "@/components/header/Header";
 import Hero from "@/components/hero/Hero";
 import Title from "@/components/Title";
 import Subtitle from "@/components/Subtitle";
+import Categories from "@/components/create/Categories";
+import createStyles from "@/styles/create.module.css";
+import {BsArrowCounterclockwise} from "react-icons/bs"
 
-const inter = Inter({ subsets: ["latin"] });
+import { Darker_Grotesque } from "@next/font/google";
+import Link from "next/link";
+
+const dg = Darker_Grotesque({
+    variable: "--darker-grotesque-font",
+    subsets: ["latin"],
+    weight: "600"
+});
 
 export default function Home() {
   return (
@@ -23,10 +32,35 @@ export default function Home() {
       </Head>
       <MainContainer>
         <MainContent>
-            <div className="flex flex-col items-center self-center">
-            <Title>turbobiz</Title>
-            <Subtitle>powered by OpenAI GPT</Subtitle>
+          <header id="header" className={createStyles.header}>
+            <Title size="md">turbobiz</Title>
+            <Subtitle size="md">powered by OpenAI GPT</Subtitle>
+          </header>
+          <div className={"w-full h-full flex flex-row"}>
+            <div className="w-full lg:w-1/2 h-full flex flex-col justify-center pl-10 space-y-8">
+              <div className="flex flex-col space-y-1">
+                <Title size="sm">choose a category</Title>
+                <Categories />
+              </div>
+              <div className="flex flex-col space-y-1">
+                <Title size="sm">choose a sub-category</Title>
+                <Categories />
+              </div>
             </div>
+            <div
+              id="results"
+              className="w-full lg:w-1/2 h-full flex flex-col justify-center items-center text-center"
+            >
+              <div className="mt-8 text-center">
+                <Subtitle size="lg">your business should be called</Subtitle>
+                <p className="text-white text-6xl">SecureAccess</p>
+              </div>
+              <Link href="/" className={"flex flex-row space-x-2 mt-8 pl-4 pr-4 pt-2 pb-2 text-xl rounded-md dark:bg-zinc-200 bg-zinc-900 items-center "+dg.className}>
+                <p>Another Name</p>
+                <BsArrowCounterclockwise className="text-xl"/>
+              </Link>
+            </div>
+          </div>
         </MainContent>
       </MainContainer>
     </>
