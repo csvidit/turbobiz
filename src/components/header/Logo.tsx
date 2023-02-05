@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const Logo = (props) =>
+const Logo = (props: any) =>
 {
     return (<Link href="/" className="text-2xl font-medium text-amber-500">turbobiz</Link>);
     // if(props.type === "logo")
