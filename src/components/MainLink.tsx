@@ -4,24 +4,19 @@ import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 import { UrlObject } from "url";
 
-const MainLink = (props: { href: string | UrlObject; children: any}) => {
+const MainLink = (props: { href: string | UrlObject; children: any }) => {
   const linkVariants = {
     hover: {
       borderBottomColor: "#94a3b8",
-      transition: {
-        delay: 0,
-      },
     },
   };
 
   const linkArrowVariants = {
     hover: {
       visibility: "visible",
-      transition: {
-        delay: 0,
-      },
     },
   };
+
   return (
     <motion.div
       className="w-2/4 mt-5 text-slate-400 pb-2 border-b-2 border-b-transparent"

@@ -9,11 +9,17 @@ import Title from "@/components/Title";
 import Subtitle from "@/components/Subtitle";
 import Categories from "@/components/create/Categories";
 import createStyles from "@/styles/create.module.css";
-import { BsArrowCounterclockwise, BsArrowUpRight } from "react-icons/bs";
+import {
+  BsArrowCounterclockwise,
+  BsArrowUpRight,
+  BsArrowRight,
+} from "react-icons/bs";
+import { motion } from "framer-motion";
 
 import { Darker_Grotesque } from "@next/font/google";
 import Link from "next/link";
 import MainLink from "@/components/MainLink";
+import Categories2 from "@/components/create/Categories2";
 
 const dg = Darker_Grotesque({
   variable: "--darker-grotesque-font",
@@ -37,18 +43,30 @@ export default function Home() {
             <div className="flex flex-row space-x-1 items-center">
               <Title size="md">turbobiz</Title>
             </div>
-            <Subtitle size="md">powered by OpenAI</Subtitle>
+            <Subtitle size="md">powered by OpenAI GPT-3</Subtitle>
           </header>
-          <div className={"w-full h-full flex flex-row"}>
+          <div className={"w-full h-full flex flex-col lg:flex-row"}>
             <div className="w-full lg:w-1/2 h-full flex flex-col justify-center pl-10 space-y-8">
               <div className="flex flex-col space-y-1">
                 <Title size="sm">choose a category</Title>
-                <Categories />
+                <Categories2 />
               </div>
               <div className="flex flex-col space-y-1">
                 <Title size="sm">choose a sub-category</Title>
-                <Categories />
+                <Categories2 />
               </div>
+              <motion.div className="rounded-md bg-amber-400 w-72" whileHover={{backgroundColor: "#f87171", transition: {duration: 0.25, ease: "easeInOut"}}}>
+                <Link
+                  href="/"
+                  className={
+                    "flex flex-row space-x-2 pl-4 pr-4 pt-2 pb-2 text-xl justify-between items-center " +
+                    dg.className
+                  }
+                >
+                  <p>Generate</p>
+                  <BsArrowRight className="text-xl" />
+                </Link>
+              </motion.div>
             </div>
             <div
               id="results"
@@ -56,19 +74,19 @@ export default function Home() {
             >
               <div className="mt-8 text-center flex flex-col space-y-1 items-center">
                 <Subtitle size="lg">your business should be called</Subtitle>
-                <p className="text-white text-6xl">SecureAccess</p>
+                <p className="text-zinc-200 text-6xl">SecureAccess</p>
               </div>
               <div className="flex flex-row space-x-8 items-center">
-              <Link
-                href="https://domains.google.com"
-                className={
-                  "flex flex-row space-x-2 mt-8 pl-4 pr-4 pt-2 pb-2 text-xl rounded-md dark:bg-zinc-200 bg-zinc-900 items-center " +
-                  dg.className
-                }
-              >
-                <p>Buy this domain</p>
-                <BsArrowUpRight className="text-xl" />
-              </Link>
+                <Link
+                  href="https://domains.google.com"
+                  className={
+                    "flex flex-row space-x-2 mt-8 pl-4 pr-4 pt-2 pb-2 text-xl rounded-md dark:bg-zinc-200 bg-zinc-900 items-center " +
+                    dg.className
+                  }
+                >
+                  <p>buy this domain</p>
+                  <BsArrowUpRight className="text-xl" />
+                </Link>
                 <Link
                   href="/"
                   className={
@@ -76,10 +94,9 @@ export default function Home() {
                     dg.className
                   }
                 >
-                  <p>Another Name</p>
+                  <p>another name</p>
                   <BsArrowCounterclockwise className="text-xl" />
                 </Link>
-                
               </div>
             </div>
           </div>
