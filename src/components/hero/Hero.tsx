@@ -1,10 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { Darker_Grotesque } from "@next/font/google";
 import { easeInOut, motion, spring } from "framer-motion";
-import { HiArrowLongRight } from "react-icons/hi2";
-import { BsArrowRight } from "react-icons/bs";
 import Title from "../Title";
 import Subtitle from "../Subtitle";
 import MainLink from "../MainLink";
