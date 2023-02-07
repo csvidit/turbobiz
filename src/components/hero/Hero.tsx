@@ -37,14 +37,14 @@ const Hero = () => {
           <MainLink href="/create">let&apos;s go</MainLink>
         </motion.div>
       </motion.div>
-      <div className="w-full lg:w-1/2 h-screen flex flex-col justify-center relative">
+      <motion.div className="w-full lg:w-1/2 h-screen flex flex-col justify-center relative">
         <Image
           src="/unsplash-3.jpg"
           fill={true}
           alt="Yellow abstract"
           className="p-10 lg:p-0"
         />
-      </div>
+      </motion.div>
     </div>
   );
 };
