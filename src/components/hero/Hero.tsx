@@ -2,12 +2,13 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Darker_Grotesque } from "@next/font/google";
-import { motion, spring } from "framer-motion";
+import { easeInOut, motion, spring } from "framer-motion";
 import { HiArrowLongRight } from "react-icons/hi2";
 import { BsArrowRight } from "react-icons/bs";
 import Title from "../Title";
 import Subtitle from "../Subtitle";
 import MainLink from "../MainLink";
+import TurbobizLogo from "../TurbobizLogo";
 
 const Hero = () => {
   const linkVariants = {
@@ -33,12 +34,20 @@ const Hero = () => {
   return (
     <div className={"w-screen h-screen flex flex-col-reverse lg:flex-row"}>
       <motion.div className="w-full lg:w-1/2 h-full flex flex-col justify-center pl-10 opacity-1">
-        <Title size="lg">turbobiz</Title>
-        <Subtitle size="lg">create a business. fast.</Subtitle>
-        <MainLink href="/create">let&apos;s go</MainLink>
+      <TurbobizLogo size="lg"></TurbobizLogo>
+        <motion.div className="flex flex-col space-y-1" animate={{opacity: [0,1], transition: {delay: 1, ease: "easeInOut", duration: 0.5}}}>
+          <Title size="lg">turbobiz</Title>
+          <Subtitle size="lg">create a business. fast.</Subtitle>
+          <MainLink href="/create">let&apos;s go</MainLink>
+        </motion.div>
       </motion.div>
       <div className="w-full lg:w-1/2 h-screen flex flex-col justify-center relative">
-        <Image src="/unsplash-3.jpg" fill={true} alt="Yellow abstract" className="p-10 lg:p-0"/>
+        <Image
+          src="/unsplash-3.jpg"
+          fill={true}
+          alt="Yellow abstract"
+          className="p-10 lg:p-0"
+        />
       </div>
     </div>
   );
