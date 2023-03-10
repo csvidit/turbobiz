@@ -21,6 +21,7 @@ import Link from "next/link";
 import MainLink from "@/components/MainLink";
 import Categories2 from "@/components/create/Categories2";
 import Results from "@/components/create/Results";
+import BasicCategories from "@/components/create/BasicCategories";
 
 const dg = Darker_Grotesque({
   variable: "--darker-grotesque-font",
@@ -29,6 +30,23 @@ const dg = Darker_Grotesque({
 });
 
 export default function Home() {
+  const primaryLinkVariants = {
+    hover: {
+      backgroundColor: "#f87171",
+      transition: { duration: 0.25, ease: "easeInOut" },
+    },
+  };
+
+  const linkArrowVariants = {
+    hover: {
+      translateX: [0, 25],
+      transition: {
+        duration: 0.25,
+        ease: "easeInOut",
+      },
+    },
+  };
+
   return (
     <>
       <Head>
@@ -50,13 +68,18 @@ export default function Home() {
             <div className="w-full lg:w-1/2 h-full flex flex-col justify-center pl-10 space-y-8">
               <div className="flex flex-col space-y-1">
                 <Title size="sm">choose a category</Title>
-                <Categories2 />
+                {/* <Categories2 /> */}
+                <BasicCategories/>
               </div>
-              <div className="flex flex-col space-y-1">
+              {/* <div className="flex flex-col space-y-1">
                 <Title size="sm">choose a sub-category</Title>
                 <Categories2 />
-              </div>
-              <motion.div className="rounded-md bg-amber-400 w-72" whileHover={{backgroundColor: "#f87171", transition: {duration: 0.25, ease: "easeInOut"}}}>
+              </div> */}
+              <motion.div
+                className="rounded-md bg-amber-400 w-72"
+                variants={primaryLinkVariants}
+                whileHover="hover"
+              >
                 <Link
                   href="/"
                   className={
@@ -64,12 +87,14 @@ export default function Home() {
                     dg.className
                   }
                 >
-                  <p>Generate</p>
-                  <BsArrowRight className="text-xl" />
+                  <motion.p>Generate</motion.p>
+                  <motion.div className="pr-[25px]" variants={linkArrowVariants}>
+                    <BsArrowRight className="text-xl" />
+                  </motion.div>
                 </Link>
               </motion.div>
             </div>
-            <Results/>
+            <Results />
           </div>
         </MainContent>
       </MainContainer>

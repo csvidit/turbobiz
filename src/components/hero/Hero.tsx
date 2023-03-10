@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { easeInOut, motion, spring } from "framer-motion";
+import { motion, spring } from "framer-motion";
 import Title from "../Title";
 import Subtitle from "../Subtitle";
 import MainLink from "../MainLink";
@@ -43,6 +43,7 @@ const Hero = () => {
           fill={true}
           alt="Yellow abstract"
           className="p-10 lg:p-0"
+          style={{transform: "scaleX(-1)"}}
         />
       </motion.div>
     </div>
