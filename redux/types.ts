@@ -1,1 +1,0 @@
-export const CATEGORY_NAME = "CATEGORY_NAME";

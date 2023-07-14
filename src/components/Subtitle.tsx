@@ -1,25 +1,12 @@
 import React from "react";
 
-const Subtitle = (props: {children: any, size: string}) =>
+interface SubtitleProps{
+    children: React.ReactNode
+}
+
+const Subtitle = (props: SubtitleProps) =>
 {
-    let classes = "text-red-600 dark:text-red-400"
-    if(props.size === "" || props.size === "lg")
-    {
-        classes+=" text-5xl";
-    }
-    else if(props.size === "md")
-    {
-       classes+=" text-3xl";
-    }
-    else if(props.size === "sm")
-    {
-        classes+=" text-xl";
-    }
-    else
-    {
-        classes+=" text-5xl";
-    }
-    return(<h2 className={classes}>{props.children}</h2>)
+    return(<h2 className="text-xl lg:text-2xl text-zinc-100 font-light">{props.children}</h2>)
 }
 
 export default Subtitle;

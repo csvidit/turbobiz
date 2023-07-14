@@ -60,14 +60,14 @@ export default function Home() {
         <MainContent>
           <header id="header" className={createStyles.header}>
             <div className="flex flex-row space-x-1 items-center">
-              <Title size="md">turbobiz</Title>
+              <Title>turbobiz</Title>
             </div>
-            <Subtitle size="md">powered by OpenAI GPT-3</Subtitle>
+            <Subtitle>powered by OpenAI GPT-3</Subtitle>
           </header>
           <div className={"w-full h-full flex flex-col lg:flex-row"}>
             <div className="w-full lg:w-1/2 h-full flex flex-col justify-center pl-10 space-y-8">
               <div className="flex flex-col space-y-1">
-                <Title size="sm">choose a category</Title>
+                <Title>choose a category</Title>
                 {/* <Categories2 /> */}
                 <BasicCategories/>
               </div>

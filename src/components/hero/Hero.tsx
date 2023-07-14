@@ -5,47 +5,27 @@ import Title from "../Title";
 import Subtitle from "../Subtitle";
 import MainLink from "../MainLink";
 import TurbobizLogo from "../TurbobizLogo";
+import AnimatedButton from "../create/AnimatedButton";
+import TurbobizLogo2 from "../TurbobizLogo2";
+import { ShootingStar } from "@phosphor-icons/react";
+import PrimaryLink from "../PrimaryLink";
+import PrimaryButton from "../PrimaryButton";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import SignIn from "../SignIn";
 
 const Hero = () => {
-  const linkVariants = {
-    hover: {
-      borderBottomColor: "#94a3b8",
-      transition: {
-        type: spring,
-        delay: 0,
-      },
-    },
-  };
-
-  const linkArrowVariants = {
-    hover: {
-      visibility: "visible",
-      transition: {
-        type: spring,
-        delay: 0,
-      },
-    },
-  };
 
   return (
-    <div className={"w-screen h-screen flex flex-col-reverse lg:flex-row"}>
-      <motion.div className="w-full lg:w-1/2 h-full flex flex-col justify-center pl-10 opacity-1">
-      <TurbobizLogo size="lg"></TurbobizLogo>
-        <motion.div className="flex flex-col space-y-1" animate={{opacity: [0,1], transition: {delay: 1, ease: "easeInOut", duration: 0.5}}}>
-          <Title size="lg">turbobiz</Title>
-          <Subtitle size="lg">create a business. fast.</Subtitle>
-          <MainLink href="/create">let&apos;s go</MainLink>
-        </motion.div>
-      </motion.div>
-      <motion.div className="w-full lg:w-1/2 h-screen flex flex-col justify-center relative">
-        <Image
-          src="/unsplash-3.jpg"
-          fill={true}
-          alt="Yellow abstract"
-          className="p-10 lg:p-0"
-          style={{transform: "scaleX(-1)"}}
-        />
-      </motion.div>
+    <div className="w-full h-full min-h-screen justify-center flex flex-col space-y-4">
+      <div className="flex flex-row space-x-2 relative items-center text-amber-400">
+        <ShootingStar weight="duotone" size={32} />
+        <Title>turbobiz</Title>
+      </div>
+      <Subtitle>leverage the power of ai and create a business. fast.</Subtitle>
+      {/* <PrimaryLink variant="fill" href="/create" external={false}>
+        Let&apos;s Go
+      </PrimaryLink>
+      <SignIn variant="fill"></SignIn> */}
     </div>
   );
 };
