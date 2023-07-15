@@ -21,11 +21,8 @@ const NavLinks = (props: { isOpen: boolean }) => {
                 delay: 0.2,
               }}
             >
-              <NavItem href="/topia">create a biz</NavItem>
-              <NavItem href="/about">readme</NavItem>
-              <NavItem href="https://viditkhandelwal.com">
-                viditkhandelwal.com
-              </NavItem>
+              <NavItem href="/history">history</NavItem>
+              <NavItem href="/about">about & terms of use</NavItem>
             </motion.div>
           </AnimatePresence>
         </motion.div>

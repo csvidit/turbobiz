@@ -9,7 +9,7 @@ const colors = {
   light: "#f5f5f5",
 };
 
-const SignIn = (props: { variant: string }) => {
+const SignIn = (props: { variant: string, children: React.ReactNode}) => {
   const [signInWithGoogle, user, loading, fbError] = useSignInWithGoogle(auth);
   const variant = props.variant;
   const color = variant == "fill" ? colors.dark : colors.light;
@@ -89,7 +89,7 @@ const SignIn = (props: { variant: string }) => {
               >
                 
                 <GoogleLogo weight="bold" size={20} />
-                <motion.div>Sign In</motion.div>
+                <motion.div>{props.children}</motion.div>
               </motion.div>
             </AnimatePresence>
             <AnimatePresence mode="wait">
@@ -99,7 +99,7 @@ const SignIn = (props: { variant: string }) => {
                 className="flex-row space-x-2 items-center"
               >
                  <GoogleLogo weight="bold" size={20} />
-                <motion.div>Sign In</motion.div>
+                <motion.div>{props.children}</motion.div>
               </motion.div>
             </AnimatePresence>
           </motion.div>

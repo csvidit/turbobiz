@@ -80,7 +80,7 @@ import {
           stiffness: 200,
         }}
       >
-        <button
+        <motion.button
           onClick={props.onClick}
           className={`flex bg-opacity-100 w-fit`}
         >
@@ -122,7 +122,7 @@ import {
               </motion.div>
             </AnimatePresence>
           </motion.div>
-        </button>
+        </motion.button>
       </MotionConfig>
     );
   };

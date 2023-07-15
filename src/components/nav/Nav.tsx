@@ -6,15 +6,22 @@ import {
   MotionConfig,
   motion,
 } from "framer-motion";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import NavLinks from "./NavLinks";
 import { Squash as Hamburger } from "hamburger-react";
 import Link from "next/link";
 import { ShootingStar } from "@phosphor-icons/react";
 import SignIn from "../SignIn";
 import NavSignIn from "./NavSignIn";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/firebase.config";
+import NavSignOut from "./NavSignOut";
+import { User } from "firebase/auth";
 
-const Nav = () => {
+const Nav = (props: {
+  currentUser: User | undefined;
+  setCurrentUser: Dispatch<SetStateAction<User | undefined>>;
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <MotionConfig
@@ -43,13 +50,18 @@ const Nav = () => {
                 >
                   <motion.div
                     layout
-                    className="flex flex-row space-x-2 items-center text-amber-400 font-medium"
+                    className="flex flex-row space-x-2 items-center text-amber-400"
                   >
                     <ShootingStar weight="duotone" size={16} />
                     <Link href="/">turbobiz</Link>
                   </motion.div>
                   <motion.div className="flex flex-row space-x-2 items-center">
-                    <NavSignIn variant="fill"/>
+                    {props.currentUser == null ? (
+                      <NavSignIn setCurrentUser={props.setCurrentUser} variant="fill" />
+                    ) : (
+                      <NavSignOut setCurrentUser={props.setCurrentUser} name={props.currentUser.displayName} />
+                    )}
+
                     <Hamburger
                       color="#fbbf24"
                       rounded
