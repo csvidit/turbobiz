@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@firebase/auth": "^1.0.0",
     "@headlessui/react": "^1.7.9",
     "@next/font": "13.1.5",
     "@phosphor-icons/react": "^2.0.10",
