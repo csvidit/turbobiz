@@ -80,9 +80,6 @@ const SignIn = (props: {
         onClick={async () => {
           await signInWithPopup(auth, new GoogleAuthProvider()).then(
             async (userCred) => {
-              await setDoc(doc(firestore, "users", userCred.user.uid), {
-                merge: true,
-              });
               auth.updateCurrentUser(userCred.user);
               props.setCurrentUser(userCred.user);
             }
