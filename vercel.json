@@ -1,0 +1,8 @@
+{
+    "framework": "next.js",
+    "buildCommand": "npm run build",
+    "limits": {
+      "nofile": 4096
+    },
+    "public": false
+  }
