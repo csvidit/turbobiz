@@ -1,15 +1,12 @@
 import { Info, ShootingStar } from "@phosphor-icons/react";
 import PrimarySelect from "./PrimarySelect";
 import Title from "../Title";
-import { auth } from "@/firebase.config";
-import { useAuthState } from "react-firebase-hooks/auth";
 import Subtitle from "../Subtitle";
 import { Dispatch, SetStateAction, useState } from "react";
 import PrimaryButton from "../PrimaryButton";
 import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import axios from "axios";
 import BusinessName from "./BusinessName";
-import SecondaryLink from "../SecondaryLink";
 import { User } from "firebase/auth";
 import CountrySelect from "./CountrySelect";
 import RemoteCheckbox from "./RemoteCheckbox";
@@ -36,47 +33,47 @@ const Create = (props: {
 
   const createHandler = async () => {
     setLoading(true);
-    // await axios
-    //   .post("/api/create", {
-    //     params: {
-    //       category: categoryName,
-    //       country: selectedCountry,
-    //       isRemote: isRemote,
-    //       businessSize: businessSize,
-    //     },
-    //   })
-    //   .then((response) => {
-    //     setResponseData(response.data);
-    //     setLoading(false);
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => console.log(error));
-    fetch("/api/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    await axios
+      .post("/api/create", {
         params: {
           category: categoryName,
           country: selectedCountry,
           isRemote: isRemote,
           businessSize: businessSize,
         },
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
       })
-      .then((data) => {
-        setResponseData(data);
+      .then((response) => {
+        setResponseData(response.data);
         setLoading(false);
-        console.log(data);
+        console.log(response.data);
       })
       .catch((error) => console.log(error));
+    // fetch("/api/create", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     params: {
+    //       category: categoryName,
+    //       country: selectedCountry,
+    //       isRemote: isRemote,
+    //       businessSize: businessSize,
+    //     },
+    //   }),
+    // })
+    //   .then((response) => {
+    //     if (!response.ok) {
+    //       throw new Error("Network response was not ok");
+    //     }
+    //     return response.json();
+    //   })
+    //   .then((data) => {
+    //     setResponseData(data);
+    //     setLoading(false);
+    //     console.log(data);
+    //   })
+    //   .catch((error) => console.log(error));
   };
 
   return (

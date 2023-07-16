@@ -3,9 +3,7 @@ import Title from "../Title";
 import Subtitle from "../Subtitle";
 import { ShootingStar } from "@phosphor-icons/react";
 import PrimaryLink from "../PrimaryLink";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import SignIn from "../SignIn";
-import { auth } from "@/firebase.config";
 import { User } from "firebase/auth";
 
 const Hero = (props: {
