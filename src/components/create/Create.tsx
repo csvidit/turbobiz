@@ -57,10 +57,12 @@ const Create = (props: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        category: categoryName,
-        country: selectedCountry,
-        isRemote: isRemote,
-        businessSize: businessSize,
+        params: {
+          category: categoryName,
+          country: selectedCountry,
+          isRemote: isRemote,
+          businessSize: businessSize,
+        },
       }),
     })
       .then((response) => {
@@ -75,7 +77,6 @@ const Create = (props: {
         console.log(data);
       })
       .catch((error) => console.log(error));
-    
   };
 
   return (
