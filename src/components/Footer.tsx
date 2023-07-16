@@ -10,7 +10,7 @@ const Footer = () => {
     </div>
     <div>A Vidit Khandelwal Project</div>
     <div>Turbobiz utilizes the power of cutting-edge generative artificial intelligence to accelerate your entrepreneurial spririt.</div>
-    <SecondaryLink href="/terms" external={false}>terms of use</SecondaryLink>
+    <SecondaryLink href="/about" external={false}>about & terms of use</SecondaryLink>
     <SecondaryLink href="https://viditkhandelwal.com" external={true}>viditkhandelwal.com</SecondaryLink>
   </div>);
 };

@@ -1,7 +1,7 @@
 import { openai } from "@/openai.config";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ChatCompletionRequestMessage } from "openai";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import * as _ from "lodash";
 
 export default async function handler(
   req: NextApiRequest,
@@ -10,11 +10,21 @@ export default async function handler(
   if (req.method != "POST") {
     return res.status(405).end();
   } else {
-    const { category } = req.body.params;
+    const { category, country, isRemote, businessSize } = req.body.params;
     const prompt: ChatCompletionRequestMessage[] = [
       {
         role: "user",
-        content: `Give me only ONE business idea for the ${category} industry. I want you to format your answer in three lines this format: \nSuggested name of the business\nDescription of the business\nA JavaScript array of possible domain names`,
+        content: `Give me only ONE unique and innovative ${
+          businessSize == 0
+            ? "small-sized"
+            : businessSize == 1
+            ? "medium-sized"
+            : "large-sized"
+        } business idea for the ${category} industry, closely tailored for the local requirements, consumer psyche, culture, and market conditions of ${country}. ${
+          isRemote
+            ? "It should be possible to operate this business completely remotely."
+            : ""
+        } I want you to format your answer in three lines this format: \nSuggested name of the business\nDescription of the business\nA JavaScript array of possible domain names`,
       },
     ];
     const completion = await openai.createChatCompletion({
@@ -22,16 +32,31 @@ export default async function handler(
       messages: prompt,
     });
     const response = completion.data.choices[0].message?.content?.split("\n");
-    console.log(completion.data);
     if (response != undefined) {
-      //   console.log(response[2]?.substring(response[2].indexOf(":") + 1));
-      const businessName = response[0]?.substring(response[0].indexOf(":") + 1);
+      // console.log(response[2]?.substring(response[2].indexOf(":") + 1));
+      const businessName = response[0]
+        ?.substring(response[0].indexOf(":") + 1)
+        .replace(/"/g, "");
       const businessDescription = response[1]?.substring(
         response[1].indexOf(":") + 1
       );
-      const businessDomains = response[2]?.substring(
+      let businessDomainsString = response[2]?.substring(
         response[2].indexOf(":") + 1
       );
+      businessDomainsString.replace(/[\[\]]/g, "");
+      businessDomainsString = businessDomainsString
+        .trim()
+        .slice(1, -1)
+        .replace(/'/g, "");
+      const businessDomains = businessDomainsString.split(",");
+
+      // businessDomainsString = businessDomainsString
+      //   .replace(/[\[\]]/g, "")
+      //   .trim();
+      // const businessDomains = businessDomainsString
+      //   .split(",")
+      //   .map((item) => item.trim());
+
       return res.status(200).json({
         businessName: businessName,
         businessDescription: businessDescription,
@@ -40,3 +65,7 @@ export default async function handler(
     }
   }
 }
+
+// const businessDomainsString = JSON.stringify(response[2]?.substring(
+//   response[2].indexOf(":") + 1
+// ));

@@ -1,7 +1,9 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import Subtitle from "../Subtitle";
+import { Buildings } from "@phosphor-icons/react";
 
 const categories = [
+  { id: 0, name: "Select...", unavailable: false },
   { id: 1, name: "Agriculture & Forestry", unavailable: false },
   { id: 2, name: "Business and Information", unavailable: false },
   { id: 3, name: "Construction & Utilities", unavailable: false },
@@ -17,25 +19,39 @@ const categories = [
   { id: 13, name: "Transportation", unavailable: false },
 ];
 
-const PrimarySelect = (props: {selectedCategory: number, setSelectedCategory: Dispatch<SetStateAction<number>>, categoryName: string, setCategoryName: Dispatch<SetStateAction<string>>}) => {
+const PrimarySelect = (props: {
+  selectedCategory: number;
+  setSelectedCategory: Dispatch<SetStateAction<number>>;
+  categoryName: string;
+  setCategoryName: Dispatch<SetStateAction<string>>;
+}) => {
   return (
-    <div>
-      <label htmlFor="countries" className="block mb-2 text-zinc-300">
-        <Subtitle>choose a category</Subtitle>
+    <div className="flex flex-col space-y-2">
+      <label
+        htmlFor="categories"
+        className="flex flex-row space-x-2 items-center text-zinc-300"
+      >
+        <Buildings weight="duotone" size={24} />
+        <Subtitle>industry</Subtitle>
       </label>
       <select
-        id="countries"
-        className="bg-zinc-900 border border-zinc-300 text-zinc-300 rounded-lg focus:ring-amber-400 focus:border-amber-400 block p-2 dark:placeholder-zinc-300"
+        id="categpories"
+        className="bg-zinc-900 border w-full border-zinc-300 text-zinc-300 rounded-lg focus:ring-amber-400 focus:border-amber-400 block p-2 dark:placeholder-zinc-300"
         value={props.selectedCategory}
         onChange={(e) => {
+          console.log("SELECT CHANGE TARGET VALUE", e.target.value);
+          console.log(
+            "SELECTED CATEGORY",
+            categories[parseInt(e.target.value)].name
+          );
           props.setSelectedCategory(parseInt(e.target.value));
-          props.setCategoryName(categories[(parseInt(e.target.value))-1].name)
+          props.setCategoryName(categories[parseInt(e.target.value)].name);
           console.log(e.target.value);
         }}
       >
-        <option key={0} value={0}>
+        {/* <option key={-1} value={0}>
           Select...
-        </option>
+        </option> */}
         {categories.map((x, index) => (
           <option key={x.id} value={x.id}>
             {x.name}

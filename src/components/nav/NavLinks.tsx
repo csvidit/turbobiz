@@ -21,7 +21,7 @@ const NavLinks = (props: { isOpen: boolean }) => {
                 delay: 0.2,
               }}
             >
-              <NavItem href="/history">history</NavItem>
+              {/* <NavItem href="/history">history</NavItem> */}
               <NavItem href="/about">about & terms of use</NavItem>
             </motion.div>
           </AnimatePresence>

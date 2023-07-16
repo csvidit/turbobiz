@@ -1,16 +1,23 @@
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
-import { auth } from "@/firebase.config";
+import { auth, firestore } from "@/firebase.config";
 import PrimaryButton from "./PrimaryButton";
 import { ArrowRight, ArrowUpRight, GoogleLogo } from "@phosphor-icons/react";
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
+import { GoogleAuthProvider, User, signInWithPopup } from "firebase/auth";
+import { setDoc, doc } from "firebase/firestore";
+import { Dispatch, SetStateAction } from "react";
 
 const colors = {
   dark: "#171717",
   light: "#f5f5f5",
 };
 
-const SignIn = (props: { variant: string, children: React.ReactNode}) => {
-  const [signInWithGoogle, user, loading, fbError] = useSignInWithGoogle(auth);
+const SignIn = (props: {
+  variant: string;
+  children: React.ReactNode;
+  currentUser: User | undefined;
+  setCurrentUser: Dispatch<SetStateAction<User | undefined>>;
+}) => {
   const variant = props.variant;
   const color = variant == "fill" ? colors.dark : colors.light;
   const backgroundColor = variant == "fill" ? colors.light : colors.dark;
@@ -70,7 +77,17 @@ const SignIn = (props: { variant: string, children: React.ReactNode}) => {
       }}
     >
       <button
-        onClick={() => signInWithGoogle()}
+        onClick={async () => {
+          await signInWithPopup(auth, new GoogleAuthProvider()).then(
+            async (userCred) => {
+              await setDoc(doc(firestore, "users", userCred.user.uid), {
+                merge: true,
+              });
+              auth.updateCurrentUser(userCred.user);
+              props.setCurrentUser(userCred.user);
+            }
+          );
+        }}
         className={`flex bg-opacity-100 w-fit`}
       >
         <motion.div
@@ -87,18 +104,17 @@ const SignIn = (props: { variant: string, children: React.ReactNode}) => {
                 variants={textVariants1}
                 className="flex-row space-x-1 items-center"
               >
-                
                 <GoogleLogo weight="bold" size={20} />
                 <motion.div>{props.children}</motion.div>
               </motion.div>
             </AnimatePresence>
             <AnimatePresence mode="wait">
-            <motion.div
+              <motion.div
                 layout
                 variants={textVariants2}
                 className="flex-row space-x-2 items-center"
               >
-                 <GoogleLogo weight="bold" size={20} />
+                <GoogleLogo weight="bold" size={20} />
                 <motion.div>{props.children}</motion.div>
               </motion.div>
             </AnimatePresence>
