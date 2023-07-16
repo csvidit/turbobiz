@@ -83,7 +83,7 @@ const Create = (props: {
         duration: 0.35,
       }}
     >
-      <div className="w-full h-full min-h-screen justify-start space-y-20">
+      <div className="w-full h-full justify-start space-y-20">
         <div className="flex flex-col space-y-4">
           <div className="flex flex-row space-x-2 relative items-center text-amber-400">
             <ShootingStar weight="duotone" size={32} />
@@ -164,18 +164,21 @@ const Create = (props: {
             </MotionConfig>
           </div>
           {isLoading == true ? (
-            <CreateLoading />
+            <AnimatePresence mode="popLayout">
+              <CreateLoading />
+            </AnimatePresence>
           ) : responseData == undefined ? (
             <></>
           ) : (
-            <div className="flex flex-col space-y-4 lg:w-2/3">
-              <div className="text-amber-400 text-xl lg:text-2xl font-light">
-                your business should be called
-              </div>
-              <div className="flex flex-col space-y-4 w-full h-full rounded-md bg-zinc-950 border border-opacity-30 border-amber-400 p-4">
-                <BusinessName>{responseData!.businessName}</BusinessName>
-                <div>{responseData!.businessDescription}</div>
-                {/* <div>
+            <AnimatePresence mode="popLayout">
+              <motion.div className="flex flex-col space-y-4 lg:w-2/3">
+                <motion.div className="text-amber-400 text-xl lg:text-2xl font-light">
+                  your business should be called
+                </motion.div>
+                <motion.div className="flex flex-col space-y-4 w-full h-full rounded-md bg-zinc-950 border border-opacity-30 border-amber-400 p-4">
+                  <BusinessName>{responseData!.businessName}</BusinessName>
+                  <motion.div>{responseData!.businessDescription}</motion.div>
+                  {/* <div>
                 {responseData!.businessDomains.map((x, index) => (
                   <div key={index}>
                     <SecondaryLink external={true} href="/">
@@ -184,8 +187,9 @@ const Create = (props: {
                   </div>
                 ))}
               </div> */}
-              </div>
-            </div>
+                </motion.div>
+              </motion.div>
+            </AnimatePresence>
           )}
         </div>
       </div>

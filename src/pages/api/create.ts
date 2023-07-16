@@ -6,8 +6,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({error: "METHOD NOT ALLOWED"})
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "METHOD NOT ALLOWED" });
   } else {
     const { category, country, isRemote, businessSize } = req.body.params;
     const prompt: ChatCompletionRequestMessage[] = [
@@ -23,7 +23,7 @@ export default async function handler(
           isRemote
             ? "It should be possible to operate this business completely remotely."
             : ""
-        } I want you to format your answer in three lines this format: \nSuggested name of the business\nDescription of the business\nA JavaScript array of possible domain names`,
+        } I want you to format your answer in strictly three lines this format: \nSuggested name of the business\nDescription of the business\nA strictly JavaScript array of possible domain names`,
       },
     ];
     await openai
@@ -32,6 +32,7 @@ export default async function handler(
         messages: prompt,
       })
       .then((completion) => {
+        console.log(completion.data.choices[0].message?.content);
         const response =
           completion.data.choices[0].message?.content?.split("\n");
         if (response != undefined) {
@@ -58,10 +59,11 @@ export default async function handler(
             businessDomains: businessDomains,
           });
         }
-      }).catch((error) => {
-        console.log(error);
-        return res.status(500).json({error: "INTERNAL SERVER ERROR"})
       })
+      .catch((error) => {
+        console.log(error);
+        return res.status(500).json({ error: "INTERNAL SERVER ERROR" });
+      });
 
     // businessDomainsString = businessDomainsString
     //   .replace(/[\[\]]/g, "")

@@ -5,12 +5,11 @@ import Title from "./Title";
 const About = () => {
   return (
     <div className="flex flex-col space-y-8">
-      <Title>about</Title>
-      <Subtitle>
+      <Title>
         Turbobiz is a full-stack Next.js web application made by Vidit
         Khandelwal. It utilizes the power of cutting-edge generative artificial
         intelligence to accelerate your entrepreneurial spririt.
-      </Subtitle>
+      </Title>
       <div className="flex flex-col space-y-4"></div>
       <Title>terms of use</Title>
       <div className="flex flex-col space-y-4">
@@ -52,11 +51,10 @@ const About = () => {
           </p>
           <ul className="">
             <li>
-                Display Name as on the Google Account: Used for personalization of the product&apos;s user interface (UI).
+              Display Name as on the Google Account: Used for personalization of
+              the product&apos;s user interface (UI).
             </li>
-            <li>
-                UID: 
-            </li>
+            <li>UID:</li>
           </ul>
         </div>
       </div>
