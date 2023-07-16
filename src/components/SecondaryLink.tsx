@@ -7,7 +7,6 @@ import {
   MotionConfig,
 } from "framer-motion";
 import Link from "next/link";
-import { HiArrowSmallRight, HiArrowUpRight } from "react-icons/hi2";
 import { UrlObject } from "url";
 
 const SecondaryLink = (props: {
