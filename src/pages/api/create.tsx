@@ -6,8 +6,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method != "POST") {
-    return res.status(405).end();
+  if (req.method != 'POST') {
+    return res.status(405).json({error: "METHOD NOT ALLOWED"})
   } else {
     const { category, country, isRemote, businessSize } = req.body.params;
     const prompt: ChatCompletionRequestMessage[] = [
@@ -52,16 +52,15 @@ export default async function handler(
             .replace(/'/g, "");
           const businessDomains = businessDomainsString.split(",");
 
-          res.status(200).json({
+          return res.status(200).json({
             businessName: businessName,
             businessDescription: businessDescription,
             businessDomains: businessDomains,
           });
-          return res.end();
         }
       }).catch((error) => {
         console.log(error);
-        return res.status(500);
+        return res.status(500).json({error: "INTERNAL SERVER ERROR"})
       })
 
     // businessDomainsString = businessDomainsString
