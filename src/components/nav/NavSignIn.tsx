@@ -33,7 +33,7 @@ const NavSignIn = (props: {
         ).then(async (userCred) => {
           auth.updateCurrentUser(userCred.user);
           props.setCurrentUser(userCred.user);
-        });
+        }).catch((error) => console.log(error));
       }}
       className={`group h-full px-2 py-1 flex flex-row space-x-1 items-center group justify-between rounded-md bg-zinc-900 text-amber-400 hover:bg-amber-400 hover:text-zinc-900 transition-all duration-200 ease-in-out text-sm overflow-hidden font-light`}
     >

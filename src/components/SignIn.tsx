@@ -80,7 +80,7 @@ const SignIn = (props: {
               auth.updateCurrentUser(userCred.user);
               props.setCurrentUser(userCred.user);
             }
-          );
+          ).catch((error) => console.log(error));
         }}
         className={`flex bg-opacity-100 w-fit`}
       >
