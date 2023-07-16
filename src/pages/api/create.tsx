@@ -1,8 +1,6 @@
 import { openai } from "@/openai.config";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ChatCompletionRequestMessage } from "openai";
-import * as _ from "lodash";
-import * as fs from "graceful-fs";
 
 export default async function handler(
   req: NextApiRequest,
