@@ -14,6 +14,7 @@ import { User } from "firebase/auth";
 import CountrySelect from "./CountrySelect";
 import RemoteCheckbox from "./RemoteCheckbox";
 import BusinessSizeSlider from "./BusinessSizeSlider";
+import CreateLoading from "./CreateLoading";
 
 type ResponseData = {
   businessName: string;
@@ -34,6 +35,7 @@ const Create = (props: {
   const [responseData, setResponseData] = useState<ResponseData>();
 
   const createHandler = async () => {
+    setLoading(true);
     await axios
       .post("/api/create", {
         params: {
@@ -45,6 +47,7 @@ const Create = (props: {
       })
       .then((response) => {
         setResponseData(response.data);
+        setLoading(false);
         console.log(response.data);
       })
       .catch((error) => console.log(error));
@@ -137,15 +140,16 @@ const Create = (props: {
               )}
             </MotionConfig>
           </div>
-
-          {responseData == null ? (
+          {isLoading == true ? (
+            <CreateLoading />
+          ) : responseData == undefined ? (
             <></>
           ) : (
-            <div className="flex flex-col space-y-4 w-2/3">
+            <div className="flex flex-col space-y-4 lg:w-2/3">
               <div className="text-amber-400 text-xl lg:text-2xl font-light">
                 your business should be called
               </div>
-              <div className="flex flex-col space-y-4 w-full rounded-md bg-zinc-950 border border-opacity-30 border-amber-400 p-4">
+              <div className="flex flex-col space-y-4 w-full h-full rounded-md bg-zinc-950 border border-opacity-30 border-amber-400 p-4">
                 <BusinessName>{responseData!.businessName}</BusinessName>
                 <div>{responseData!.businessDescription}</div>
                 {/* <div>
