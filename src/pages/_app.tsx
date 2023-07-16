@@ -1,22 +1,14 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { AnimatePresence } from "framer-motion";
-import { Provider } from "react-redux";
 import MainContainer from "@/components/MainContainer";
 import Footer from "@/components/Footer";
 import Nav from "@/components/nav/Nav";
 import {
   User,
-  browserSessionPersistence,
-  getAuth,
   onAuthStateChanged,
-  setPersistence,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { GetServerSideProps, GetStaticProps } from "next";
 import { auth } from "@/firebase.config";
-import { useAuthState } from "react-firebase-hooks/auth";
-import * as firebaseAdmin from "firebase-admin";
 
 interface MainAppProps extends AppProps {
   user: User | undefined;

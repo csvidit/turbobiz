@@ -1,10 +1,7 @@
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
-import { auth, firestore } from "@/firebase.config";
-import PrimaryButton from "./PrimaryButton";
+import { auth } from "@/firebase.config";
 import { ArrowRight, ArrowUpRight, GoogleLogo } from "@phosphor-icons/react";
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import { GoogleAuthProvider, User, signInWithPopup } from "firebase/auth";
-import { setDoc, doc } from "firebase/firestore";
 import { Dispatch, SetStateAction } from "react";
 
 const colors = {

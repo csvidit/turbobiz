@@ -1,5 +1,5 @@
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
-import { auth, firestore, provider } from "@/firebase.config";
+import { auth } from "@/firebase.config";
 import { GoogleLogo } from "@phosphor-icons/react";
 import { PuffLoader } from "react-spinners";
 import {

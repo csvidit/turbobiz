@@ -1,7 +1,5 @@
 import { getApp, getApps, initializeApp } from 'firebase/app'
-import { getAuth, GoogleAuthProvider } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
-// import * as firebaseAdmin from "firebase-admin";
+import { getAuth } from 'firebase/auth'
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
 
@@ -17,15 +15,5 @@ const firebaseConfig = {
   
     measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
-
-// export const admin = firebaseAdmin.initializeApp({
-//     credential: firebaseAdmin.credential.cert({
-//       projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-//       clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-//       privateKey: process.env.FIREBASE_PRIVATE_KEY,
-//     }),
-//   });
 export const app = !getApps().length ? initializeApp(firebaseConfig) : getApp()
 export const auth = getAuth(app)
-export const firestore = getFirestore(app);
-export const provider = new GoogleAuthProvider();

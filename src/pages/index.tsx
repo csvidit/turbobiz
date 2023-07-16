@@ -1,10 +1,7 @@
 import Head from "next/head";
 import MainContent from "../components/MainContent";
 import Hero from "@/components/hero/Hero";
-import { GetServerSideProps } from "next";
 import Create from "@/components/create/Create";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "@/firebase.config";
 import { User } from "firebase/auth";
 import { Dispatch, SetStateAction } from "react";
 import Loading from "@/components/Loading";
