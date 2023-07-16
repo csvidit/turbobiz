@@ -57,11 +57,13 @@ export default async function handler(
       //   .split(",")
       //   .map((item) => item.trim());
 
-      return res.status(200).json({
+      res.status(200).json({
         businessName: businessName,
         businessDescription: businessDescription,
         businessDomains: businessDomains,
       });
+      return res.end();
+      
     }
   }
 }
