@@ -36,21 +36,46 @@ const Create = (props: {
 
   const createHandler = async () => {
     setLoading(true);
-    await axios
-      .post("/api/create", {
-        params: {
-          category: categoryName,
-          country: selectedCountry,
-          isRemote: isRemote,
-          businessSize: businessSize,
-        },
-      })
+    // await axios
+    //   .post("/api/create", {
+    //     params: {
+    //       category: categoryName,
+    //       country: selectedCountry,
+    //       isRemote: isRemote,
+    //       businessSize: businessSize,
+    //     },
+    //   })
+    //   .then((response) => {
+    //     setResponseData(response.data);
+    //     setLoading(false);
+    //     console.log(response.data);
+    //   })
+    //   .catch((error) => console.log(error));
+    fetch("/api/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        category: categoryName,
+        country: selectedCountry,
+        isRemote: isRemote,
+        businessSize: businessSize,
+      }),
+    })
       .then((response) => {
-        setResponseData(response.data);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setResponseData(data);
         setLoading(false);
-        console.log(response.data);
+        console.log(data);
       })
       .catch((error) => console.log(error));
+    
   };
 
   return (
