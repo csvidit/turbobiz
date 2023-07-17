@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@next/font": "13.1.5",
-    "@phosphor-icons/react": "^2.0.10",
     "@radix-ui/react-select": "^1.2.2",
     "@reduxjs/toolkit": "^1.9.2",
     "@types/node": "18.11.18",

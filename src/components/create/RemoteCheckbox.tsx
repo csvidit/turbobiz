@@ -1,4 +1,4 @@
-import { Graph } from "@phosphor-icons/react";
+// import { Graph } from "@phosphor-icons/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Dispatch, SetStateAction } from "react";
 
@@ -31,7 +31,7 @@ const RemoteCheckbox = (props: {
           htmlFor="hs-basic-usage"
           className="flex flex-row space-x-1 items-center"
         >
-          <Graph weight="duotone" size={16} />
+          {/* <Graph weight="duotone" size={16} /> */}
           <div>Remote Company</div>
         </motion.label>
       </motion.div>

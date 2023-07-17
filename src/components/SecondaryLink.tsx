@@ -1,5 +1,5 @@
 "use client";
-import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react";
+// import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react";
 import {
   motion,
   AnimatePresence,
@@ -91,22 +91,22 @@ const SecondaryLink = (props: {
             layout
             className={`flex flex-row items-center space-x-2`}
           >
-            {props.external == true ? (
+            {/* {props.external == true ? (
               <ArrowUpRight />
             ) : (
               <ArrowRight />
-            )}
+            )} */}
           </motion.div>
           <motion.div
             variants={textVariants2}
             layout
             className={`flex flex-row items-center space-x-2`}
           >
-            {props.external == true ? (
+            {/* {props.external == true ? (
               <ArrowUpRight />
             ) : (
               <ArrowRight />
-            )}
+            )} */}
           </motion.div>
         </motion.div>
       </Link>

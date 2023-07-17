@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import Subtitle from "../Subtitle";
-import { GlobeHemisphereEast } from "@phosphor-icons/react";
+// import { GlobeHemisphereEast } from "@phosphor-icons/react";
 
 const CountrySelect = (props: {
   selectedCountry: string;
@@ -9,7 +9,7 @@ const CountrySelect = (props: {
   return (
     <div className="flex flex-col space-y-2">
       <label htmlFor="countries" className="flex flex-row space-x-2 items-center text-zinc-300">
-      <GlobeHemisphereEast weight="duotone" size={24} />
+      {/* <GlobeHemisphereEast weight="duotone" size={24} /> */}
         <Subtitle>target country</Subtitle>
       </label>
       <select

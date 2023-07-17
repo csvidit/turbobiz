@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import Subtitle from "../Subtitle";
-import { Buildings } from "@phosphor-icons/react";
+// import { Buildings } from "@phosphor-icons/react";
 
 const categories = [
   { id: 0, name: "Select...", unavailable: false },
@@ -31,7 +31,7 @@ const PrimarySelect = (props: {
         htmlFor="categories"
         className="flex flex-row space-x-2 items-center text-zinc-300"
       >
-        <Buildings weight="duotone" size={24} />
+        {/* <Buildings weight="duotone" size={24} /> */}
         <Subtitle>industry</Subtitle>
       </label>
       <select

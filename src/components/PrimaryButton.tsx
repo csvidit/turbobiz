@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react";
+// import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react";
 import {
     motion,
     AnimatePresence,
@@ -109,7 +109,7 @@ import {
                 layout
                 className={`flex flex-row items-center space-x-2`}
               >
-                {props.external === true ? <ArrowUpRight /> : <ArrowRight />}
+                {/* {props.external === true ? <ArrowUpRight /> : <ArrowRight />} */}
               </motion.div>
             </AnimatePresence>
             <AnimatePresence>
@@ -118,7 +118,7 @@ import {
                 layout
                 className={`flex flex-row items-center space-x-2`}
               >
-                {props.external === true ? <ArrowUpRight /> : <ArrowRight />}
+                {/* {props.external === true ? <ArrowUpRight /> : <ArrowRight />} */}
               </motion.div>
             </AnimatePresence>
           </motion.div>

@@ -1,9 +1,7 @@
-"use client";
-
 import Link from "next/link";
 import { UrlObject } from "url";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight } from "@phosphor-icons/react";
+// import { ArrowRight } from "@phosphor-icons/react";
 
 const NavItem = (props: { href: string; children: React.ReactNode }) => {
   return (
@@ -17,7 +15,7 @@ const NavItem = (props: { href: string; children: React.ReactNode }) => {
           className="flex flex-row space-x-2 items-center py-1 w-full justify-between rounded-lg text-zinc-300 group-hover:ease-in-out group-hover:transition-all group-hover:text-amber-400 group-hover:transform"
         >
           <motion.div>{props.children}</motion.div>
-          <ArrowRight size={12} className="flex scale-0 group-hover:scale-100 group-hover:ease-in-out group-hover:transition-transform" />
+          {/* <ArrowRight size={12} className="flex scale-0 group-hover:scale-100 group-hover:ease-in-out group-hover:transition-transform" /> */}
         </motion.div>
       </Link>
     </AnimatePresence>

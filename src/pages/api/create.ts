@@ -53,7 +53,7 @@ export default async function handler(
             .replace(/'/g, "");
           const businessDomains = businessDomainsString.split(",");
 
-          return res.status(200).json({
+          res.status(200).json({
             businessName: businessName,
             businessDescription: businessDescription,
             businessDomains: businessDomains,
@@ -64,15 +64,15 @@ export default async function handler(
         console.log(error);
         return res.status(500).json({ error: "INTERNAL SERVER ERROR" });
       });
+  }
+}
 
-    // businessDomainsString = businessDomainsString
+ // businessDomainsString = businessDomainsString
     //   .replace(/[\[\]]/g, "")
     //   .trim();
     // const businessDomains = businessDomainsString
     //   .split(",")
     //   .map((item) => item.trim());
-  }
-}
 
 // const businessDomainsString = JSON.stringify(response[2]?.substring(
 //   response[2].indexOf(":") + 1

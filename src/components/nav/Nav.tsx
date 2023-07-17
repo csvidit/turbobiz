@@ -10,7 +10,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import NavLinks from "./NavLinks";
 import { Squash as Hamburger } from "hamburger-react";
 import Link from "next/link";
-import { ShootingStar } from "@phosphor-icons/react";
+// import { ShootingStar } from "@phosphor-icons/react";
 import SignIn from "../SignIn";
 import NavSignIn from "./NavSignIn";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -52,7 +52,7 @@ const Nav = (props: {
                     layout
                     className="flex flex-row space-x-2 items-center text-amber-400"
                   >
-                    <ShootingStar weight="duotone" size={16} />
+                    {/* <ShootingStar weight="duotone" size={16} /> */}
                     <Link href="/">turbobiz</Link>
                   </motion.div>
                   <motion.div className="flex flex-row space-x-2 items-center">

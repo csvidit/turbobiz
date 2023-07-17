@@ -1,5 +1,5 @@
 import { auth } from "@/firebase.config";
-import { ArrowRight, ArrowUpRight, GoogleLogo } from "@phosphor-icons/react";
+// import { ArrowRight, ArrowUpRight, GoogleLogo } from "@phosphor-icons/react";
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import { GoogleAuthProvider, User, signInWithPopup } from "firebase/auth";
 import { Dispatch, SetStateAction } from "react";
@@ -98,7 +98,7 @@ const SignIn = (props: {
                 variants={textVariants1}
                 className="flex-row space-x-1 items-center"
               >
-                <GoogleLogo weight="bold" size={20} />
+                {/* <GoogleLogo weight="bold" size={20} /> */}
                 <motion.div>{props.children}</motion.div>
               </motion.div>
             </AnimatePresence>
@@ -108,7 +108,7 @@ const SignIn = (props: {
                 variants={textVariants2}
                 className="flex-row space-x-2 items-center"
               >
-                <GoogleLogo weight="bold" size={20} />
+                {/* <GoogleLogo weight="bold" size={20} /> */}
                 <motion.div>{props.children}</motion.div>
               </motion.div>
             </AnimatePresence>

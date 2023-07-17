@@ -1,4 +1,4 @@
-import { Steps } from "@phosphor-icons/react";
+// import { Steps } from "@phosphor-icons/react";
 import { Dispatch, SetStateAction } from "react";
 
 const BusinessSizeSlider = (props: {
@@ -11,7 +11,7 @@ const BusinessSizeSlider = (props: {
         htmlFor="business-size-range"
         className="flex flex-row space-x-2 items-center"
       >
-        <Steps size={16} />
+        {/* <Steps size={16} /> */}
         <div>Business Size</div>
       </label>
       <input
