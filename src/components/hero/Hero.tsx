@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction } from "react";
 import Title from "../Title";
 import Subtitle from "../Subtitle";
-// import { ShootingStar } from "@phosphor-icons/react";
 import PrimaryLink from "../PrimaryLink";
 import SignIn from "../SignIn";
 import { User } from "firebase/auth";
+import { PiShootingStarDuotone } from "react-icons/pi";
 
 const Hero = (props: {
   currentUser: User | undefined;
@@ -13,7 +13,8 @@ const Hero = (props: {
   return (
     <div className="w-full h-full min-h-screen flex flex-col space-y-4">
       <div className="flex flex-row space-x-2 relative items-center text-amber-400">
-        {/* <ShootingStar weight="duotone" size={32} /> */}
+        <PiShootingStarDuotone size={32} />
+        
         <div className="flex flex-row space-x-2 items-center">
           <Title>turbobiz</Title>
           <div className="px-1 py-0.5 rounded text-xs bg-zinc-950 border border-zinc-800 text-amber-400 text-opacity-60">

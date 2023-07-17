@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import Subtitle from "../Subtitle";
-// import { Buildings } from "@phosphor-icons/react";
+import { PiBuildingsDuotone } from "react-icons/pi";
 
 const categories = [
   { id: 0, name: "Select...", unavailable: false },
@@ -31,7 +31,7 @@ const PrimarySelect = (props: {
         htmlFor="categories"
         className="flex flex-row space-x-2 items-center text-zinc-300"
       >
-        {/* <Buildings weight="duotone" size={24} /> */}
+        <PiBuildingsDuotone size={24} />
         <Subtitle>industry</Subtitle>
       </label>
       <select
@@ -49,9 +49,6 @@ const PrimarySelect = (props: {
           console.log(e.target.value);
         }}
       >
-        {/* <option key={-1} value={0}>
-          Select...
-        </option> */}
         {categories.map((x, index) => (
           <option key={x.id} value={x.id}>
             {x.name}

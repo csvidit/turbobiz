@@ -1,8 +1,8 @@
 import { auth } from "@/firebase.config";
-// import { ArrowRight, ArrowUpRight, GoogleLogo } from "@phosphor-icons/react";
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import { GoogleAuthProvider, User, signInWithPopup } from "firebase/auth";
 import { Dispatch, SetStateAction } from "react";
+import { PiGoogleLogoBold } from "react-icons/pi";
 
 const colors = {
   dark: "#171717",
@@ -75,12 +75,12 @@ const SignIn = (props: {
     >
       <button
         onClick={async () => {
-          await signInWithPopup(auth, new GoogleAuthProvider()).then(
-            async (userCred) => {
+          await signInWithPopup(auth, new GoogleAuthProvider())
+            .then(async (userCred) => {
               auth.updateCurrentUser(userCred.user);
               props.setCurrentUser(userCred.user);
-            }
-          ).catch((error) => console.log(error));
+            })
+            .catch((error) => console.log(error));
         }}
         className={`flex bg-opacity-100 w-fit`}
       >
@@ -98,7 +98,7 @@ const SignIn = (props: {
                 variants={textVariants1}
                 className="flex-row space-x-1 items-center"
               >
-                {/* <GoogleLogo weight="bold" size={20} /> */}
+                <PiGoogleLogoBold size={20} />
                 <motion.div>{props.children}</motion.div>
               </motion.div>
             </AnimatePresence>
@@ -108,7 +108,7 @@ const SignIn = (props: {
                 variants={textVariants2}
                 className="flex-row space-x-2 items-center"
               >
-                {/* <GoogleLogo weight="bold" size={20} /> */}
+                <PiGoogleLogoBold size={20} />
                 <motion.div>{props.children}</motion.div>
               </motion.div>
             </AnimatePresence>

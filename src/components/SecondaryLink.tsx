@@ -1,12 +1,10 @@
-"use client";
-// import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react";
 import {
   motion,
   AnimatePresence,
-  useReducedMotion,
   MotionConfig,
 } from "framer-motion";
 import Link from "next/link";
+import { PiArrowUpRight, PiArrowRight } from "react-icons/pi";
 import { UrlObject } from "url";
 
 const SecondaryLink = (props: {
@@ -91,22 +89,14 @@ const SecondaryLink = (props: {
             layout
             className={`flex flex-row items-center space-x-2`}
           >
-            {/* {props.external == true ? (
-              <ArrowUpRight />
-            ) : (
-              <ArrowRight />
-            )} */}
+            {props.external === true ? <PiArrowUpRight /> : <PiArrowRight />}
           </motion.div>
           <motion.div
             variants={textVariants2}
             layout
             className={`flex flex-row items-center space-x-2`}
           >
-            {/* {props.external == true ? (
-              <ArrowUpRight />
-            ) : (
-              <ArrowRight />
-            )} */}
+           {props.external === true ? <PiArrowUpRight /> : <PiArrowRight />}
           </motion.div>
         </motion.div>
       </Link>

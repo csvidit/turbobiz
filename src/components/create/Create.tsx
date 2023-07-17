@@ -1,4 +1,5 @@
 // import { Info, ShootingStar } from "@phosphor-icons/react";
+import {PiInfo, PiShootingStarDuotone} from "react-icons/pi"
 import PrimarySelect from "./PrimarySelect";
 import Title from "../Title";
 import Subtitle from "../Subtitle";
@@ -48,32 +49,6 @@ const Create = (props: {
         console.log(response.data);
       })
       .catch((error) => console.log(error));
-    // fetch("/api/create", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     params: {
-    //       category: categoryName,
-    //       country: selectedCountry,
-    //       isRemote: isRemote,
-    //       businessSize: businessSize,
-    //     },
-    //   }),
-    // })
-    //   .then((response) => {
-    //     if (!response.ok) {
-    //       throw new Error("Network response was not ok");
-    //     }
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     setResponseData(data);
-    //     setLoading(false);
-    //     console.log(data);
-    //   })
-    //   .catch((error) => console.log(error));
   };
 
   return (
@@ -86,7 +61,7 @@ const Create = (props: {
       <div className="w-full h-full justify-start space-y-20">
         <div className="flex flex-col space-y-4">
           <div className="flex flex-row space-x-2 relative items-center text-amber-400">
-            {/* <ShootingStar weight="duotone" size={32} /> */}
+            <PiShootingStarDuotone size={32}/>
             <div className="flex flex-row space-x-2 items-center">
               <Title>turbobiz</Title>
               <div className="px-1 py-0.5 rounded text-xs bg-zinc-950 border border-zinc-800 text-amber-400 text-opacity-60">
@@ -97,7 +72,7 @@ const Create = (props: {
           <Subtitle>Welcome, {props.currentUser?.displayName}</Subtitle>
           <div className="bg-zinc-950 border border-zinc-800 text-zinc-600 px-2 py-1 rounded-md text-sm w-fit flex flex-row space-x-1 items-center flex-wrap">
             <div>
-              {/* <Info size={16} /> */}
+              <PiInfo size={16} />
             </div>
             <div>coming soon: search histories</div>
           </div>

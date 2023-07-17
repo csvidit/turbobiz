@@ -1,11 +1,10 @@
-// import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react";
 import {
     motion,
     AnimatePresence,
-    useReducedMotion,
     MotionConfig,
   } from "framer-motion";
   import Link from "next/link";
+import { PiArrowUpRight, PiArrowRight } from "react-icons/pi";
 
   import { UrlObject } from "url";
 
@@ -109,7 +108,7 @@ import {
                 layout
                 className={`flex flex-row items-center space-x-2`}
               >
-                {/* {props.external === true ? <ArrowUpRight /> : <ArrowRight />} */}
+                {props.external === true ? <PiArrowUpRight /> : <PiArrowRight />}
               </motion.div>
             </AnimatePresence>
             <AnimatePresence>
@@ -118,7 +117,7 @@ import {
                 layout
                 className={`flex flex-row items-center space-x-2`}
               >
-                {/* {props.external === true ? <ArrowUpRight /> : <ArrowRight />} */}
+                {props.external === true ? <PiArrowUpRight /> : <PiArrowRight />}
               </motion.div>
             </AnimatePresence>
           </motion.div>
