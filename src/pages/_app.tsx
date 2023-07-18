@@ -73,9 +73,9 @@ export default function App({
           name="twitter:description"
           content="Create a business idea. Fast."
         />
-        <meta name="twitter:image" content="og-facebook.png" />
+        <meta name="twitter:image" content="../../public/og-facebook.png" />
 
-        <meta property="og:image" content="og-facebook.png" />
+        <meta property="og:image" content="../../public/og-facebook.png" />
       </Head>
       <Nav currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <Component
