@@ -2,6 +2,17 @@ import { openai } from "@/openai.config";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ChatCompletionRequestMessage } from "openai";
 
+const isEmpty = (str: string) => {
+  if(str === "" || str === "")
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -28,7 +39,7 @@ export default async function handler(
     ];
     await openai
       .createChatCompletion({
-        model: "gpt-3.5-turbo",
+        model: "gpt-4",
         messages: prompt,
       })
       .then((completion) => {
@@ -36,13 +47,16 @@ export default async function handler(
         const response =
           completion.data.choices[0].message?.content?.split("\n");
         if (response != undefined) {
+          let currIndex = isEmpty(response[0]) ? 1 : 0
           // console.log(response[2]?.substring(response[2].indexOf(":") + 1));
-          const businessName = response[0]
+          const businessName = response[currIndex]
             ?.substring(response[0].indexOf(":") + 1)
             .replace(/"/g, "");
+          currIndex = isEmpty(response[currIndex+1]) ? currIndex+2 : currIndex+1;
           const businessDescription = response[1]?.substring(
             response[1].indexOf(":") + 1
           );
+          currIndex = isEmpty(response[currIndex+1]) ? currIndex+2 : currIndex+1;
           let businessDomainsString = response[2]?.substring(
             response[2].indexOf(":") + 1
           );

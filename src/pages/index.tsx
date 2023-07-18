@@ -13,11 +13,11 @@ export default function Home(props: {isLoading: boolean; currentUser: User, setC
     return (
       <>
         <Head>
-          <title>Turbobiz</title>
           <meta name="description" content="Create a business idea. Fast." />
-          <meta name="author" content="Vidit Khandelwal" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/favicon.ico" />
+          <meta
+          property="og:description"
+          content="Create a business idea. Fast."
+        />
         </Head>
         <Loading/>
       </>
@@ -27,11 +27,11 @@ export default function Home(props: {isLoading: boolean; currentUser: User, setC
   return (
     <>
       <Head>
-        <title>Turbobiz</title>
         <meta name="description" content="Create a business idea. Fast." />
-        <meta name="author" content="Vidit Khandelwal" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          property="og:description"
+          content="Create a business idea. Fast."
+        />
       </Head>
       <MainContent>{props.currentUser == null ? <Hero currentUser={props.currentUser} setCurrentUser={props.setCurrentUser} /> : <Create currentUser={props.currentUser} setCurrentUser={props.setCurrentUser} />}</MainContent>
     </>

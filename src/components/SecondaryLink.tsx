@@ -11,6 +11,7 @@ const SecondaryLink = (props: {
   children: React.ReactNode;
   href: string | UrlObject;
   external: boolean;
+  inline?: boolean;
   className?: string;
 }) => {
   const colors = {
@@ -63,16 +64,16 @@ const SecondaryLink = (props: {
     >
       <Link
         href={props.href}
-        className={`flex bg-opacity-100 w-full ${props.className}`}
+        className={`flex bg-opacity-100 ${props.inline ? "inline flex-wrap w-fit" : "w-full"} ${props.className}`}
       >
         <motion.div
           variants={mainDivVariants}
           initial="initial"
           whileHover="hover"
           layout
-          className={`group w-fit h-full flex flex-row items-center group justify-start space-x-2 border-b overflow-hidden font-light`}
+          className={`group w-fit h-full flex flex-row ${props.inline ? "inline flex-wrap" : ""} items-center group justify-start space-x-2 border-b overflow-hidden font-light`}
         >
-          <motion.div className="flex flex-col overflow-hidden">
+          <motion.div className={`flex flex-col overflow-hidden`}>
             <AnimatePresence mode="popLayout">
               <motion.div layout variants={textVariants1} className="flex">
                 {props.children}
