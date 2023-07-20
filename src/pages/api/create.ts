@@ -69,53 +69,58 @@ export default async function handler(
             .slice(1, -1)
             .replace(/'/g, "");
           const businessDomains = businessDomainsString.split(",");
-          const currTime = new Date().getTime();
+          // const currTime = new Date().getTime();
 
-          const userInfoRef = doc(firestore, "users", uid);
-          const docSnap = await getDoc(userInfoRef);
-          const historyJson = {
-            version: 1,
-            category: category,
-            country: country,
-            isRemote: isRemote,
-            businessSize: businessSize,
+          // const userInfoRef = doc(firestore, "users", uid);
+          // const docSnap = await getDoc(userInfoRef);
+          // const historyJson = {
+          //   version: 1,
+          //   category: category,
+          //   country: country,
+          //   isRemote: isRemote,
+          //   businessSize: businessSize,
+          //   businessName: businessName,
+          //   businessDescription: businessDescription,
+          //   businessDomains: businessDomains,
+          //   createdTime: currTime,
+          // };
+          // if (docSnap.exists()) {
+          //   const userHistoryUpdate = await updateDoc(userInfoRef, {
+          //     historyv1: arrayUnion(JSON.stringify(historyJson)),
+          //   })
+          //     .then((response) => {
+          //       res.status(200).json({
+          //         businessName: businessName,
+          //         businessDescription: businessDescription,
+          //         businessDomains: businessDomains,
+          //       });
+          //     })
+          //     .catch((error) => {
+          //       console.log(error);
+          //     });
+          // } else {
+          //   const docData = { historyv1: [] };
+          //   const setNewDoc = await setDoc(userInfoRef, docData).then(
+          //     async (response) => {
+          //       const userHistoryUpdate = await updateDoc(userInfoRef, {
+          //         historyv1: arrayUnion(JSON.stringify(historyJson)),
+          //       })
+          //         .then((response) => {
+          //           res.status(200).json({
+          //             businessName: businessName,
+          //             businessDescription: businessDescription,
+          //             businessDomains: businessDomains,
+          //           });
+          //         })
+          //         .catch((error) => console.log(error));
+          //     }
+          //   );
+          // }
+          res.status(200).json({
             businessName: businessName,
             businessDescription: businessDescription,
             businessDomains: businessDomains,
-            createdTime: currTime,
-          };
-          if (docSnap.exists()) {
-            const userHistoryUpdate = await updateDoc(userInfoRef, {
-              historyv1: arrayUnion(JSON.stringify(historyJson)),
-            })
-              .then((response) => {
-                res.status(200).json({
-                  businessName: businessName,
-                  businessDescription: businessDescription,
-                  businessDomains: businessDomains,
-                });
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          } else {
-            const docData = { historyv1: [] };
-            const setNewDoc = await setDoc(userInfoRef, docData).then(
-              async (response) => {
-                const userHistoryUpdate = await updateDoc(userInfoRef, {
-                  historyv1: arrayUnion(JSON.stringify(historyJson)),
-                })
-                  .then((response) => {
-                    res.status(200).json({
-                      businessName: businessName,
-                      businessDescription: businessDescription,
-                      businessDomains: businessDomains,
-                    });
-                  })
-                  .catch((error) => console.log(error));
-              }
-            );
-          }
+          });
         }
       })
       .catch((error) => {
