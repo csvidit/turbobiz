@@ -38,7 +38,7 @@ export default async function handler(
     ];
     await openai
       .createChatCompletion({
-        model: "gpt-4",
+        model: "gpt-3.5-turbo",
         messages: prompt,
       })
       .then(async (completion) => {
@@ -54,14 +54,14 @@ export default async function handler(
           currIndex = isEmpty(response[currIndex + 1])
             ? currIndex + 2
             : currIndex + 1;
-          const businessDescription = response[1]?.substring(
-            response[1].indexOf(":") + 1
+          const businessDescription = response[currIndex]?.substring(
+            response[currIndex].indexOf(":") + 1
           );
           currIndex = isEmpty(response[currIndex + 1])
             ? currIndex + 2
             : currIndex + 1;
-          let businessDomainsString = response[2]?.substring(
-            response[2].indexOf(":") + 1
+          let businessDomainsString = response[currIndex]?.substring(
+            response[currIndex].indexOf(":") + 1
           );
           businessDomainsString.replace(/[\[\]]/g, "");
           businessDomainsString = businessDomainsString

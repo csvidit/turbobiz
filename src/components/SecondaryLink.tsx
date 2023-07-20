@@ -65,6 +65,7 @@ const SecondaryLink = (props: {
       <Link
         href={props.href}
         className={`flex bg-opacity-100 ${props.inline ? "inline flex-wrap w-fit" : "w-full"} ${props.className}`}
+        target={props.external ? "_blank" : ""}
       >
         <motion.div
           variants={mainDivVariants}

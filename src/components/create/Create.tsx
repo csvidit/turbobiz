@@ -12,6 +12,7 @@ import RemoteCheckbox from "./RemoteCheckbox";
 import BusinessSizeSlider from "./BusinessSizeSlider";
 import CreateLoading from "./CreateLoading";
 import { AuthContext } from "@/AuthContext";
+import SecondaryLink from "../SecondaryLink";
 
 type ResponseData = {
   businessName: string;
@@ -19,8 +20,7 @@ type ResponseData = {
   businessDomains: string[];
 };
 
-const Create = (props: {
-}) => {
+const Create = (props: {}) => {
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [categoryName, setCategoryName] = useState("Select...");
   const [selectedCountry, setSelectedCountry] = useState("Select...");
@@ -41,11 +41,11 @@ const Create = (props: {
           country: selectedCountry,
           isRemote: isRemote,
           businessSize: businessSize,
-          uid: uid
-        }, 
-       headers: {
-        Authorization: `Bearer ${user?.getIdToken()}`,
-       }
+          uid: uid,
+        },
+        headers: {
+          Authorization: `Bearer ${user?.getIdToken()}`,
+        },
       })
       .then((response) => {
         setResponseData(response.data);
@@ -65,7 +65,7 @@ const Create = (props: {
       <div className="w-full h-full justify-start space-y-20">
         <div className="flex flex-col space-y-4">
           <div className="flex flex-row space-x-2 relative items-center text-amber-400">
-            <PiShootingStarDuotone size={32}/>
+            <PiShootingStarDuotone size={32} />
             <div className="flex flex-row space-x-2 items-center">
               <Title>turbobiz</Title>
               <div className="px-1 py-0.5 rounded text-xs bg-zinc-950 border border-zinc-800 text-amber-400 text-opacity-60">
@@ -151,21 +151,24 @@ const Create = (props: {
           ) : (
             <AnimatePresence mode="popLayout">
               <motion.div className="flex flex-col space-y-4 lg:w-2/3">
-                <motion.div className="text-amber-400 text-xl lg:text-2xl font-light">
-                  your business should be called
-                </motion.div>
                 <motion.div className="flex flex-col space-y-4 w-full h-full rounded-md bg-zinc-950 border border-opacity-30 border-amber-400 p-4">
+                  <motion.div className="text-amber-400 text-xl lg:text-2xl font-light">
+                    your business should be called
+                  </motion.div>
                   <BusinessName>{responseData!.businessName}</BusinessName>
                   <motion.div>{responseData!.businessDescription}</motion.div>
-                  {/* <div>
-                {responseData!.businessDomains.map((x, index) => (
-                  <div key={index}>
-                    <SecondaryLink external={true} href="/">
-                      {x}
-                    </SecondaryLink>
+                  <div className="flex flex-col space-y-2">
+                    <div className="text-amber-400">Possible domain names:</div>
+                    <div>
+                      {responseData!.businessDomains.map((x, index) => (
+                        <div key={index}>
+                          <SecondaryLink external={true} href={`https://www.namecheap.com/domains/registration/results/?domain=${x.replace(/['"]/g, '')}`}>
+                            {x.replace(/['"]/g, '')}
+                          </SecondaryLink>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                ))}
-              </div> */}
                 </motion.div>
               </motion.div>
             </AnimatePresence>
