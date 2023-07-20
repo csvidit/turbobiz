@@ -17,3 +17,7 @@ The web application itself is made in NextJS using TypeScript as much as possibl
 * Firebase Authentication (only Google OAuth as of now)
 * Firebase Cloud Firestore
 * Firebase Cloud Functions
+
+## Screenshots
+
+<img src="https://firebasestorage.googleapis.com/v0/b/vk-cs-portfolio.appspot.com/o/Screen%20Shot%202023-07-20%20at%207.21.09%20PM.png?alt=media&token=9d83d736-3b98-4f68-b61a-c9603bb281ab"/>
