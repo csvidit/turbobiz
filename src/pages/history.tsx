@@ -1,79 +1,33 @@
 import Head from "next/head";
 import MainContent from "../components/MainContent";
-import {
-  User,
-} from "firebase/auth";
-import { Dispatch, SetStateAction } from "react";
 import Loading from "@/components/Loading";
 import Title from "@/components/Title";
+import { useState } from "react";
+import Subtitle from "@/components/Subtitle";
+import { PiInfo } from "react-icons/pi";
 
-export default function Home(props: {
-  isLoading: boolean;
-  currentUser: User;
-  setCurrentUser: Dispatch<SetStateAction<User | undefined>>;
-}) {
+export default function Home(props: {}) {
+  const [loading, setLoading] = useState(true);
+
   return (
     <>
       <Head>
         <meta name="description" content="Create a business idea. Fast." />
-        <MainContent>
-          <Title>Coming Soon</Title>
-        </MainContent>
       </Head>
-      <Loading />
+      <MainContent>
+        <div className="flex flex-col w-full h-full space-y-4">
+          <Title>Coming Soon: User Search History</Title>
+          <div className="bg-zinc-950 border border-zinc-800 text-zinc-600 px-2 py-1 rounded-md text-sm w-fit flex flex-row space-x-1 items-center flex-wrap">
+            <div>
+              <PiInfo size={16} />
+            </div>
+            <div>
+              This is a new feature, user searches before the release of this
+              feature are not available.
+            </div>
+          </div>
+        </div>
+      </MainContent>
     </>
   );
-  // if (props.isLoading) {
-  //   return (
-  //     <>
-  //       <Head>
-  //         <Head>
-  //           <title>About - Turbobiz</title>
-  //           <meta name="description" content="Create a business idea. Fast." />
-  //           <meta name="author" content="Vidit Khandelwal" />
-  //           <meta
-  //             name="viewport"
-  //             content="width=device-width, initial-scale=1"
-  //           />
-  //           <link rel="icon" href="/favicon.ico" />
-  //         </Head>
-  //       </Head>
-  //       <Loading />
-  //     </>
-  //   );
-  // } else {
-  //   if (props.currentUser == undefined) {
-  //     const signIn = async () => {
-  //       await signInWithRedirect(auth, new GoogleAuthProvider());
-  //       const result = await getRedirectResult(auth);
-  //       if (result) {
-  //         auth.updateCurrentUser(result.user);
-  //         props.setCurrentUser(result.user);
-  //       }
-  //     };
-  //     signIn();
-  //   } else {
-  //     return (
-  //       <>
-  //         <Head>
-  //           <title>About - Turbobiz</title>
-  //           <meta name="description" content="Create a business idea. Fast." />
-  //           <meta name="author" content="Vidit Khandelwal" />
-  //           <meta
-  //             name="viewport"
-  //             content="width=device-width, initial-scale=1"
-  //           />
-  //           <link rel="icon" href="/favicon.ico" />
-  //         </Head>
-  //         <MainContent>
-  //           <div className="mt-40 w-full h-full min-h-screen">
-  //             {" "}
-  //             <Title>History</Title>
-  //             <Subtitle>{props.currentUser.displayName}</Subtitle>
-  //           </div>
-  //         </MainContent>
-  //       </>
-  //     );
-  //   }
-  // }
 }

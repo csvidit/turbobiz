@@ -1,17 +1,16 @@
+import { firestore } from "@/firebase.config";
 import { openai } from "@/openai.config";
+import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ChatCompletionRequestMessage } from "openai";
 
 const isEmpty = (str: string) => {
-  if(str === "" || str === "")
-  {
+  if (str === "" || str === " " || str === "\n") {
     return true;
-  }
-  else
-  {
+  } else {
     return false;
   }
-}
+};
 
 export default async function handler(
   req: NextApiRequest,
@@ -20,7 +19,7 @@ export default async function handler(
   if (req.method !== "POST") {
     return res.status(405).json({ error: "METHOD NOT ALLOWED" });
   } else {
-    const { category, country, isRemote, businessSize } = req.body.params;
+    const { category, country, isRemote, businessSize, uid } = req.body.params;
     const prompt: ChatCompletionRequestMessage[] = [
       {
         role: "user",
@@ -42,21 +41,25 @@ export default async function handler(
         model: "gpt-4",
         messages: prompt,
       })
-      .then((completion) => {
+      .then(async (completion) => {
         console.log(completion.data.choices[0].message?.content);
         const response =
           completion.data.choices[0].message?.content?.split("\n");
         if (response != undefined) {
-          let currIndex = isEmpty(response[0]) ? 1 : 0
+          let currIndex = isEmpty(response[0]) ? 1 : 0;
           // console.log(response[2]?.substring(response[2].indexOf(":") + 1));
           const businessName = response[currIndex]
             ?.substring(response[0].indexOf(":") + 1)
             .replace(/"/g, "");
-          currIndex = isEmpty(response[currIndex+1]) ? currIndex+2 : currIndex+1;
+          currIndex = isEmpty(response[currIndex + 1])
+            ? currIndex + 2
+            : currIndex + 1;
           const businessDescription = response[1]?.substring(
             response[1].indexOf(":") + 1
           );
-          currIndex = isEmpty(response[currIndex+1]) ? currIndex+2 : currIndex+1;
+          currIndex = isEmpty(response[currIndex + 1])
+            ? currIndex + 2
+            : currIndex + 1;
           let businessDomainsString = response[2]?.substring(
             response[2].indexOf(":") + 1
           );
@@ -66,12 +69,53 @@ export default async function handler(
             .slice(1, -1)
             .replace(/'/g, "");
           const businessDomains = businessDomainsString.split(",");
+          const currTime = new Date().getTime();
 
-          res.status(200).json({
+          const userInfoRef = doc(firestore, "users", uid);
+          const docSnap = await getDoc(userInfoRef);
+          const historyJson = {
+            version: 1,
+            category: category,
+            country: country,
+            isRemote: isRemote,
+            businessSize: businessSize,
             businessName: businessName,
             businessDescription: businessDescription,
             businessDomains: businessDomains,
-          });
+            createdTime: currTime,
+          };
+          if (docSnap.exists()) {
+            const userHistoryUpdate = await updateDoc(userInfoRef, {
+              historyv1: arrayUnion(JSON.stringify(historyJson)),
+            })
+              .then((response) => {
+                res.status(200).json({
+                  businessName: businessName,
+                  businessDescription: businessDescription,
+                  businessDomains: businessDomains,
+                });
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          } else {
+            const docData = { historyv1: [] };
+            const setNewDoc = await setDoc(userInfoRef, docData).then(
+              async (response) => {
+                const userHistoryUpdate = await updateDoc(userInfoRef, {
+                  historyv1: arrayUnion(JSON.stringify(historyJson)),
+                })
+                  .then((response) => {
+                    res.status(200).json({
+                      businessName: businessName,
+                      businessDescription: businessDescription,
+                      businessDomains: businessDomains,
+                    });
+                  })
+                  .catch((error) => console.log(error));
+              }
+            );
+          }
         }
       })
       .catch((error) => {
@@ -81,12 +125,12 @@ export default async function handler(
   }
 }
 
- // businessDomainsString = businessDomainsString
-    //   .replace(/[\[\]]/g, "")
-    //   .trim();
-    // const businessDomains = businessDomainsString
-    //   .split(",")
-    //   .map((item) => item.trim());
+// businessDomainsString = businessDomainsString
+//   .replace(/[\[\]]/g, "")
+//   .trim();
+// const businessDomains = businessDomainsString
+//   .split(",")
+//   .map((item) => item.trim());
 
 // const businessDomainsString = JSON.stringify(response[2]?.substring(
 //   response[2].indexOf(":") + 1

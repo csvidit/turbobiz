@@ -1,6 +1,7 @@
+import { AuthDispatchContext } from "@/AuthContext";
 import { auth } from "@/firebase.config";
 import { GoogleAuthProvider, User, signInWithPopup } from "firebase/auth";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useContext } from "react";
 import { PiGoogleLogoBold } from "react-icons/pi";
 
 const colors = {
@@ -10,15 +11,19 @@ const colors = {
 
 const NavSignIn = (props: {
   variant: string;
-  setCurrentUser: Dispatch<SetStateAction<User | undefined>>;
+  // setCurrentUser: Dispatch<SetStateAction<User | undefined>>;
 }) => {
+
+  const dispatch = useContext(AuthDispatchContext);
+
   return (
     <button
       onClick={async () => {
         await signInWithPopup(auth, new GoogleAuthProvider())
           .then(async (userCred) => {
             auth.updateCurrentUser(userCred.user);
-            props.setCurrentUser(userCred.user);
+            dispatch!({type: "LOGIN", payload: userCred.user});
+            // props.setCurrentUser(userCred.user);
           })
           .catch((error) => console.log(error));
       }}

@@ -1,18 +1,17 @@
-// import { Info, ShootingStar } from "@phosphor-icons/react";
-import {PiInfo, PiShootingStarDuotone} from "react-icons/pi"
+import { PiInfo, PiShootingStarDuotone } from "react-icons/pi";
 import PrimarySelect from "./PrimarySelect";
 import Title from "../Title";
 import Subtitle from "../Subtitle";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useContext, useState } from "react";
 import PrimaryButton from "../PrimaryButton";
 import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import axios from "axios";
 import BusinessName from "./BusinessName";
-import { User } from "firebase/auth";
 import CountrySelect from "./CountrySelect";
 import RemoteCheckbox from "./RemoteCheckbox";
 import BusinessSizeSlider from "./BusinessSizeSlider";
 import CreateLoading from "./CreateLoading";
+import { AuthContext } from "@/AuthContext";
 
 type ResponseData = {
   businessName: string;
@@ -21,8 +20,6 @@ type ResponseData = {
 };
 
 const Create = (props: {
-  currentUser: User | undefined;
-  setCurrentUser: Dispatch<SetStateAction<User | undefined>>;
 }) => {
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [categoryName, setCategoryName] = useState("Select...");
@@ -31,6 +28,9 @@ const Create = (props: {
   const [businessSize, setBusinessSize] = useState(0); // 0 is small, 1 is medium, 2 is large
   const [isLoading, setLoading] = useState(false);
   const [responseData, setResponseData] = useState<ResponseData>();
+
+  const user = useContext(AuthContext);
+  const uid = user?.uid;
 
   const createHandler = async () => {
     setLoading(true);
@@ -41,14 +41,18 @@ const Create = (props: {
           country: selectedCountry,
           isRemote: isRemote,
           businessSize: businessSize,
-        },
+          uid: uid
+        }, 
+       headers: {
+        Authorization: `Bearer ${user?.getIdToken()}`,
+       }
       })
       .then((response) => {
         setResponseData(response.data);
         setLoading(false);
         console.log(response.data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log("CLIENT SIDE ERROR", error));
   };
 
   return (
@@ -69,7 +73,7 @@ const Create = (props: {
               </div>
             </div>
           </div>
-          <Subtitle>Welcome, {props.currentUser?.displayName}</Subtitle>
+          <Subtitle>Welcome, {user?.displayName}</Subtitle>
           <div className="bg-zinc-950 border border-zinc-800 text-zinc-600 px-2 py-1 rounded-md text-sm w-fit flex flex-row space-x-1 items-center flex-wrap">
             <div>
               <PiInfo size={16} />

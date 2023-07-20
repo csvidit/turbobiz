@@ -1,15 +1,19 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useContext } from "react";
 import Title from "../Title";
 import Subtitle from "../Subtitle";
 import PrimaryLink from "../PrimaryLink";
 import SignIn from "../SignIn";
 import { User } from "firebase/auth";
 import { PiShootingStarDuotone } from "react-icons/pi";
+import { AuthContext } from "@/AuthContext";
 
 const Hero = (props: {
-  currentUser: User | undefined;
-  setCurrentUser: Dispatch<SetStateAction<User | undefined>>;
+  // currentUser: User | undefined;
+  // setCurrentUser: Dispatch<SetStateAction<User | undefined>>;
 }) => {
+
+  const user = useContext(AuthContext);
+
   return (
     <div className="w-full h-full min-h-screen flex flex-col space-y-4">
       <div className="flex flex-row space-x-2 relative items-center text-amber-400">
@@ -22,10 +26,10 @@ const Hero = (props: {
         </div>
       </div>
       <Subtitle>leverage the power of ai and create a business. fast.</Subtitle>
-      {props.currentUser == null ? (
+      {user == undefined || null ? (
         <SignIn
-          currentUser={props.currentUser}
-          setCurrentUser={props.setCurrentUser}
+          // currentUser={props.currentUser}
+          // setCurrentUser={props.setCurrentUser}
           variant="fill"
         >
           Sign in to continue

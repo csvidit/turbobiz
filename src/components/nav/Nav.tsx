@@ -4,7 +4,7 @@ import {
   MotionConfig,
   motion,
 } from "framer-motion";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useContext, useState } from "react";
 import NavLinks from "./NavLinks";
 import { Squash as Hamburger } from "hamburger-react";
 import Link from "next/link";
@@ -12,11 +12,15 @@ import NavSignIn from "./NavSignIn";
 import NavSignOut from "./NavSignOut";
 import { User } from "firebase/auth";
 import { PiShootingStarDuotone } from "react-icons/pi";
+import { AuthContext } from "@/AuthContext";
 
 const Nav = (props: {
-  currentUser: User | undefined;
-  setCurrentUser: Dispatch<SetStateAction<User | undefined>>;
+  // currentUser: User | undefined;
+  // setCurrentUser: Dispatch<SetStateAction<User | undefined>>;
 }) => {
+
+  const user = useContext(AuthContext);
+
   const [isOpen, setIsOpen] = useState(false);
   return (
     <MotionConfig
@@ -52,10 +56,15 @@ const Nav = (props: {
                     <Link href="/">turbobiz</Link>
                   </motion.div>
                   <motion.div className="flex flex-row space-x-2 items-center">
-                    {props.currentUser == null ? (
+                    {/* {props.currentUser == null ? (
                       <NavSignIn setCurrentUser={props.setCurrentUser} variant="fill" />
                     ) : (
                       <NavSignOut setCurrentUser={props.setCurrentUser} name={props.currentUser.displayName} />
+                    )} */}
+                    {user == null || undefined ? (
+                      <NavSignIn variant="fill" />
+                    ) : (
+                      <NavSignOut />
                     )}
 
                     <Hamburger

@@ -1,8 +1,9 @@
 import { auth } from "@/firebase.config";
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import { GoogleAuthProvider, User, signInWithPopup } from "firebase/auth";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useContext } from "react";
 import { PiGoogleLogoBold } from "react-icons/pi";
+import { AuthDispatchContext } from "@/AuthContext";
 
 const colors = {
   dark: "#171717",
@@ -12,9 +13,12 @@ const colors = {
 const SignIn = (props: {
   variant: string;
   children: React.ReactNode;
-  currentUser: User | undefined;
-  setCurrentUser: Dispatch<SetStateAction<User | undefined>>;
+  // currentUser: User | undefined;
+  // setCurrentUser: Dispatch<SetStateAction<User | undefined>>;
 }) => {
+
+  const dispatch = useContext(AuthDispatchContext);
+
   const variant = props.variant;
   const color = variant == "fill" ? colors.dark : colors.light;
   const backgroundColor = variant == "fill" ? colors.light : colors.dark;
@@ -78,7 +82,8 @@ const SignIn = (props: {
           await signInWithPopup(auth, new GoogleAuthProvider())
             .then(async (userCred) => {
               auth.updateCurrentUser(userCred.user);
-              props.setCurrentUser(userCred.user);
+              dispatch!({type: "LOGIN", payload: userCred.user});
+              // props.setCurrentUser(userCred.user);
             })
             .catch((error) => console.log(error));
         }}
