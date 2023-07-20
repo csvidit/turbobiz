@@ -43,9 +43,6 @@ const Create = (props: {}) => {
           businessSize: businessSize,
           uid: uid,
         },
-        headers: {
-          Authorization: `Bearer ${user?.getIdToken()}`,
-        },
       })
       .then((response) => {
         setResponseData(response.data);
