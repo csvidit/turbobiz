@@ -22,8 +22,6 @@ const HistoryModal = (props: {
         transition={{
           type: "spring",
           duration: 0.2,
-          ease: "easeInOut",
-
           damping: 20,
           stiffness: 200,
         }}
