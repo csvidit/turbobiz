@@ -26,7 +26,7 @@ import { PiArrowRight, PiArrowUpRight } from "react-icons/pi";
       initial: {
         color: color,
         backgroundColor: backgroundColor,
-        borderColor: backgroundColor,
+        borderColor: color,
         scale: 1,
         opacity: 1,
       },
@@ -79,7 +79,7 @@ import { PiArrowRight, PiArrowUpRight } from "react-icons/pi";
       >
         <motion.button
           onClick={props.onClick}
-          className={`flex bg-opacity-100 w-fit`}
+          className={`flex bg-opacity-100 w-fit ${props.className}`}
         >
           <motion.div
             variants={mainDivVariants}
@@ -100,7 +100,7 @@ import { PiArrowRight, PiArrowUpRight } from "react-icons/pi";
                 </motion.div>
               </AnimatePresence>
             </motion.div>
-            <AnimatePresence>
+            {/* <AnimatePresence>
               <motion.div
                 variants={textVariants1}
                 layout
@@ -117,7 +117,7 @@ import { PiArrowRight, PiArrowUpRight } from "react-icons/pi";
               >
                 {props.external === true ? <PiArrowUpRight /> : <PiArrowRight />}
               </motion.div>
-            </AnimatePresence>
+            </AnimatePresence> */}
           </motion.div>
         </motion.button>
       </MotionConfig>

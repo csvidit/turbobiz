@@ -13,8 +13,6 @@ const colors = {
 const SignIn = (props: {
   variant: string;
   children: React.ReactNode;
-  // currentUser: User | undefined;
-  // setCurrentUser: Dispatch<SetStateAction<User | undefined>>;
 }) => {
 
   const dispatch = useContext(AuthDispatchContext);

@@ -33,7 +33,7 @@ export default async function handler(
           isRemote
             ? "It should be possible to operate this business completely remotely."
             : ""
-        } I want you to format your answer in strictly three lines this format: \nSuggested name of the business\nDescription of the business\nA strictly JavaScript array of possible domain names`,
+        } I want you to format your answer in ONLY three lines this format: \nSuggested name of the business\nDescription of the business\nA strictly JavaScript array of possible domain names`,
       },
     ];
     await openai
@@ -47,7 +47,6 @@ export default async function handler(
           completion.data.choices[0].message?.content?.split("\n");
         if (response != undefined) {
           let currIndex = isEmpty(response[0]) ? 1 : 0;
-          // console.log(response[2]?.substring(response[2].indexOf(":") + 1));
           const businessName = response[currIndex]
             ?.substring(response[0].indexOf(":") + 1)
             .replace(/"/g, "");
@@ -69,53 +68,7 @@ export default async function handler(
             .slice(1, -1)
             .replace(/'/g, "");
           const businessDomains = businessDomainsString.split(",");
-          // const currTime = new Date().getTime();
-
-          // const userInfoRef = doc(firestore, "users", uid);
-          // const docSnap = await getDoc(userInfoRef);
-          // const historyJson = {
-          //   version: 1,
-          //   category: category,
-          //   country: country,
-          //   isRemote: isRemote,
-          //   businessSize: businessSize,
-          //   businessName: businessName,
-          //   businessDescription: businessDescription,
-          //   businessDomains: businessDomains,
-          //   createdTime: currTime,
-          // };
-          // if (docSnap.exists()) {
-          //   const userHistoryUpdate = await updateDoc(userInfoRef, {
-          //     historyv1: arrayUnion(JSON.stringify(historyJson)),
-          //   })
-          //     .then((response) => {
-          //       res.status(200).json({
-          //         businessName: businessName,
-          //         businessDescription: businessDescription,
-          //         businessDomains: businessDomains,
-          //       });
-          //     })
-          //     .catch((error) => {
-          //       console.log(error);
-          //     });
-          // } else {
-          //   const docData = { historyv1: [] };
-          //   const setNewDoc = await setDoc(userInfoRef, docData).then(
-          //     async (response) => {
-          //       const userHistoryUpdate = await updateDoc(userInfoRef, {
-          //         historyv1: arrayUnion(JSON.stringify(historyJson)),
-          //       })
-          //         .then((response) => {
-          //           res.status(200).json({
-          //             businessName: businessName,
-          //             businessDescription: businessDescription,
-          //             businessDomains: businessDomains,
-          //           });
-          //         })
-          //         .catch((error) => console.log(error));
-          //     }
-          //   );
-          // }
+          const currTime = new Date().getTime();
           res.status(200).json({
             businessName: businessName,
             businessDescription: businessDescription,

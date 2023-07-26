@@ -40,7 +40,7 @@ const Nav = (props: {
                 // borderRadius: isOpen ? "16px" : "9999px",
                 borderBottom: "1px solid #52525b",
               }}
-              className="z-50 flex flex-col absolute top-5 lg:top-10 w-11/12 lg:w-10/12 items-start bg-zinc-900"
+              className="z-40 flex flex-col absolute top-5 lg:top-10 w-11/12 lg:w-10/12 items-start bg-zinc-900 bg-opacity-90"
             >
               <AnimatePresence mode="popLayout">
                 <motion.div
@@ -51,7 +51,7 @@ const Nav = (props: {
                     layout
                     className="flex flex-row space-x-2 items-center text-amber-400"
                   >
-                    <PiShootingStarDuotone size={16} />
+                    <PiShootingStarDuotone />
                     
                     <Link href="/">turbobiz</Link>
                   </motion.div>

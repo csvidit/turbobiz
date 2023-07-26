@@ -28,7 +28,7 @@ import { PiArrowUpRight, PiArrowRight } from "react-icons/pi";
       initial: {
         color: color,
         backgroundColor: backgroundColor,
-        borderColor: backgroundColor,
+        borderColor: color,
         scale: 1,
         opacity: 1,
       },

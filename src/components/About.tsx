@@ -14,7 +14,7 @@ const About = () => {
       </Title>
       <div className="flex flex-col space-y-4"></div>
       <Title>terms of use</Title>
-      <div className="flex flex-col space-y-4">
+      <div className="flex flex-col space-y-4 text-justify">
         <p>
           Turbobiz (the &quot;project&quot;, &quot;product&quot;,
           &quot;service&quot;) is made as a hobby project, free for public use.
@@ -65,7 +65,7 @@ const About = () => {
         </ul>
         <div>
           <PrimaryLink
-            variant="fill"
+            variant="outline"
             external={true}
             href="https://github.com/csvidit/turbobiz"
           >

@@ -13,6 +13,8 @@ import BusinessSizeSlider from "./BusinessSizeSlider";
 import CreateLoading from "./CreateLoading";
 import { AuthContext } from "@/AuthContext";
 import SecondaryLink from "../SecondaryLink";
+import { firestore } from "@/firebase.config";
+import { doc, getDoc, updateDoc, arrayUnion, setDoc } from "firebase/firestore";
 
 type ResponseData = {
   businessName: string;
@@ -44,10 +46,46 @@ const Create = (props: {}) => {
           uid: uid,
         },
       })
-      .then((response) => {
+      .then( async (response) => {
         setResponseData(response.data);
-        setLoading(false);
-        console.log(response.data);
+        const currTime = new Date().getTime();
+        const userInfoRef = doc(firestore, "users", user!.uid);
+        const docSnap = await getDoc(userInfoRef);
+        const historyJson = {
+          version: 1,
+          category: selectedCategory,
+          country: selectedCountry,
+          isRemote: isRemote,
+          businessSize: businessSize,
+          businessName: response.data.businessName,
+          businessDescription: response.data.businessDescription,
+          businessDomains: response.data.businessDomains,
+          createdTime: currTime,
+        };
+        if (docSnap.exists()) {
+          const userHistoryUpdate = await updateDoc(userInfoRef, {
+            historyv1: arrayUnion(historyJson),
+          })
+            .then((response) => {
+              setLoading(false);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } else {
+          const docData = { historyv1: [] };
+          const setNewDoc = await setDoc(userInfoRef, docData).then(
+            async (response) => {
+              const userHistoryUpdate = await updateDoc(userInfoRef, {
+                historyv1: arrayUnion(historyJson),
+              })
+                .then((response) => {
+                  setLoading(false);
+                })
+                .catch((error) => console.log(error));
+            }
+          );
+        }
       })
       .catch((error) => console.log("CLIENT SIDE ERROR", error));
   };
@@ -155,12 +193,18 @@ const Create = (props: {}) => {
                   <BusinessName>{responseData!.businessName}</BusinessName>
                   <motion.div>{responseData!.businessDescription}</motion.div>
                   <div className="flex flex-col space-y-2">
-                    <div className="text-amber-400">Possible domain names:</div>
+                  <div className="text-amber-400">possible domain names:</div>
                     <div>
                       {responseData!.businessDomains.map((x, index) => (
                         <div key={index}>
-                          <SecondaryLink external={true} href={`https://www.namecheap.com/domains/registration/results/?domain=${x.replace(/['"]/g, '')}`}>
-                            {x.replace(/['"]/g, '')}
+                          <SecondaryLink
+                            external={true}
+                            href={`https://www.namecheap.com/domains/registration/results/?domain=${x.replace(
+                              /['"]/g,
+                              ""
+                            )}`}
+                          >
+                            {x.replace(/['"]/g, "")}
                           </SecondaryLink>
                         </div>
                       ))}

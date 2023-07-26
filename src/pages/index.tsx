@@ -9,10 +9,7 @@ import { AuthContext } from "@/AuthContext";
 
 export default function Home(props: {
   isLoading: boolean;
-  // currentUser: User;
-  // setCurrentUser: Dispatch<SetStateAction<User | undefined>>;
 }) {
-
   const user = useContext(AuthContext);
 
   if (props.isLoading) {
@@ -40,17 +37,7 @@ export default function Home(props: {
         />
       </Head>
       <MainContent>
-        {user == null || undefined ? (
-          <Hero
-            // currentUser={props.currentUser}
-            // setCurrentUser={props.setCurrentUser}
-          />
-        ) : (
-          <Create
-            // currentUser={props.currentUser}
-            // setCurrentUser={props.setCurrentUser}
-          />
-        )}
+        {user == null || undefined ? <Hero /> : <Create />}
       </MainContent>
     </>
   );

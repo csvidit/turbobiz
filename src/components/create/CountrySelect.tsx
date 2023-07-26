@@ -18,7 +18,6 @@ const CountrySelect = (props: {
         value={props.selectedCountry}
         onChange={(e) => {
           props.setSelectedCountry(e.target.value);
-          console.log(e.target.value);
         }}
       >
         {countries.map((x, index) => (

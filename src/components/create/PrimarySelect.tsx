@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import Subtitle from "../Subtitle";
 import { PiBuildingsDuotone } from "react-icons/pi";
 
-const categories = [
+export const categories = [
   { id: 0, name: "Select...", unavailable: false },
   { id: 1, name: "Agriculture & Forestry", unavailable: false },
   { id: 2, name: "Business and Information", unavailable: false },
@@ -46,7 +46,6 @@ const PrimarySelect = (props: {
           );
           props.setSelectedCategory(parseInt(e.target.value));
           props.setCategoryName(categories[parseInt(e.target.value)].name);
-          console.log(e.target.value);
         }}
       >
         {categories.map((x, index) => (

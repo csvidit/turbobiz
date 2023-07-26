@@ -16,16 +16,13 @@ import {
   initialUserState,
   userReducer,
 } from "@/AuthContext";
+import Loading from "@/components/Loading";
 
 interface MainAppProps extends AppProps {
   user: User | undefined;
 }
 
-export default function App({
-  Component,
-  pageProps,
-  router,
-}: MainAppProps) {
+export default function App({ Component, pageProps, router }: MainAppProps) {
   // const [currentUser, setCurrentUser] = useState(user);
   const [currentUser, dispatch] = useReducer(userReducer, initialUserState);
   const [isLoading, setLoading] = useState(true);
@@ -44,15 +41,11 @@ export default function App({
   });
 
   if (isLoading) {
-    <MainContainer>
-      <Component
-        {...pageProps}
-        key={router.asPath}
-        // currentUser={currentUser}
-        // setCurrentUser={setCurrentUser}
-        isLoading={isLoading}
-      />
-    </MainContainer>;
+    return (
+      <MainContainer>
+        <Loading />
+      </MainContainer>
+    );
   }
 
   return (
@@ -90,7 +83,7 @@ export default function App({
             <meta property="og:image" content="../../public/og-facebook.png" />
           </Head>
           {/* <Nav currentUser={currentUser} setCurrentUser={setCurrentUser} /> */}
-          <Nav/>
+          <Nav />
           <Component
             {...pageProps}
             key={router.asPath}
