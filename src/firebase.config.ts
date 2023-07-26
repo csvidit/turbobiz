@@ -1,7 +1,6 @@
 import { getApp, getApps, initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import firebaseAdmin from "firebase-admin";
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
 
@@ -17,9 +16,9 @@ const firebaseConfig = {
 
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 
-  auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+  // auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
 
-  clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+  clientEmail: process.env.NEXT_PUBLIC_FIREBASE_CLIENT_EMAIL,
 };
 
 // const firebaseAdminConfig = {
