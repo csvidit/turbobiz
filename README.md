@@ -21,3 +21,5 @@ The web application itself is made in NextJS using TypeScript as much as possibl
 ## Screenshots
 
 <img src="https://firebasestorage.googleapis.com/v0/b/vk-cs-portfolio.appspot.com/o/Screen%20Shot%202023-07-20%20at%207.21.09%20PM.png?alt=media&token=9d83d736-3b98-4f68-b61a-c9603bb281ab"/>
+<img src="https://firebasestorage.googleapis.com/v0/b/vk-cs-portfolio.appspot.com/o/Screen%20Shot%202023-07-26%20at%207.55.36%20PM.png?alt=media&token=35609f07-8c99-4de5-a9e9-6c4cebba825c"/>
+<img src="https://firebasestorage.googleapis.com/v0/b/vk-cs-portfolio.appspot.com/o/Screen%20Shot%202023-07-26%20at%207.55.57%20PM.png?alt=media&token=22b8f648-a22e-41b6-8f77-2c1c7d45eedd"/>
