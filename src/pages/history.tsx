@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import Subtitle from "@/components/Subtitle";
 import { PiInfo } from "react-icons/pi";
 import { firestore } from "@/firebase.config";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "@firebase/firestore";
 import { AuthContext } from "@/AuthContext";
 import HistoryItem from "@/components/history/HistoryItem";
 import Hero from "@/components/hero/Hero";
