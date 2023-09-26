@@ -63,7 +63,7 @@ export default function Home() {
               </div>
             </div>
 
-            {history.map((x, index) => (
+            {history && history.map((x, index) => (
               <HistoryItem data={x} key={index} />
             ))}
           </div>
