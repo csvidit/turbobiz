@@ -30,16 +30,19 @@ export default function Home() {
   const user = useContext(AuthContext);
 
   useEffect(() => {
+    console.log("INSIDE USEEFFECT")
     const fetchHistory = async () => {
+      console.log("INSIDE FETCH HISTORY")
       const userHistoryRef = doc(firestore, "users", user!.uid);
-      console.log(userHistoryRef);
+      console.log("LOG USERHISTORY REF", userHistoryRef);
       const docSnap = await getDoc(userHistoryRef);
       if (docSnap.exists()) {
-        console.log(docSnap.data());
+        console.log("LOG DOCSNAP",docSnap.data());
         setHistory(docSnap.data().historyv1);
       }
     };
     if (user != null && user != undefined) {
+      console.log("INSIDE IF CONDITION OF USEEFECT")
       fetchHistory();
     }
   }, [user]);
