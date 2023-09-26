@@ -32,8 +32,10 @@ export default function Home() {
   useEffect(() => {
     const fetchHistory = async () => {
       const userHistoryRef = doc(firestore, "users", user!.uid);
+      console.log(userHistoryRef);
       const docSnap = await getDoc(userHistoryRef);
       if (docSnap.exists()) {
+        console.log(docSnap.data());
         setHistory(docSnap.data().historyv1);
       }
     };
@@ -63,9 +65,8 @@ export default function Home() {
               </div>
             </div>
 
-            {history && history.map((x, index) => (
-              <HistoryItem data={x} key={index} />
-            ))}
+            {history &&
+              history.map((x, index) => <HistoryItem data={x} key={index} />)}
           </div>
         )}
       </MainContent>

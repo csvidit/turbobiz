@@ -11,13 +11,13 @@ const HistoryItem = (props: { data: History }) => {
   const test = categories.at(parseInt(props.data.category))?.name;
 
   return (
-    <li className="w-full py-4 grid grid-cols-2 lg:grid-cols-4 border-b border-b-zinc-800 list-none">
-      <li className="w-fit text-lg lg:text-xl font-medium justify-self-start">
+    <div className="w-full py-4 grid grid-cols-2 lg:grid-cols-4 border-b border-b-zinc-800 divst-none">
+      <div className="w-fit text-lg lg:text-xl font-medium justify-self-start">
         {props.data.businessName}
-      </li>
-      <li className="hidden lg:flex justify-self-center text-left">{categories.at(parseInt(props.data.category))?.name}</li>
-      <li className="hidden lg:flex justify-self-center">{props.data.country}</li>
-      <li className="w-fit justify-self-end">
+      </div>
+      <div className="hidden lg:flex justify-self-center text-left">{categories.at(parseInt(props.data.category))?.name}</div>
+      <div className="hidden lg:flex justify-self-center">{props.data.country}</div>
+      <div className="w-fit justify-self-end">
         <SecondaryButton
           onClick={() => {
             setModalOpen(!isModalOpen);
@@ -27,12 +27,12 @@ const HistoryItem = (props: { data: History }) => {
         >
           Details
         </SecondaryButton>
-      </li>
+      </div>
 
       {isModalOpen && (
         <HistoryModal setModalOpen={setModalOpen} data={props.data} />
       )}
-    </li>
+    </div>
   );
 };
 
