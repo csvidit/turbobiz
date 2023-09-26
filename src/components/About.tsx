@@ -24,7 +24,7 @@ const About = () => {
         <p>
           The results provided by Turbobiz are parsed by custom code, and are
           based on the results given by OpenAI&apos; Generative Pretrained
-          Tranformer (GPT) 3.5 Turbo Large Language Model (LLM). Any resemblance
+          Tranformer (GPT) 4 Large Language Model (LLM). Any resemblance
           to real life existing businesses, products, ideas, or entities is
           purely coincidental, unintentional, and an occassional occurence due
           to the very nature of generative artificial intelligence. Neither
@@ -60,7 +60,7 @@ const About = () => {
           </li>
           <li>
             UID: Used for attaching user information such as search history to
-            their account in Firestore (feature coming in the upcoming version).
+            their account in Firestore.
           </li>
         </ul>
         <div>

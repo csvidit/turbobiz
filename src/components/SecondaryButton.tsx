@@ -15,6 +15,7 @@ import {
     const colors = {
       dark: "#52525b",
       light: "#d4d4d8",
+      amber: "#fbbf24"
     };
     
     const mainDivVariants = {
@@ -23,6 +24,7 @@ import {
         borderColor: colors.light
       },
       hover: {
+        borderColor: colors.amber
       },
     };
   

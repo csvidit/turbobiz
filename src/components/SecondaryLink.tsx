@@ -17,6 +17,7 @@ const SecondaryLink = (props: {
   const colors = {
     dark: "#52525b",
     light: "#d4d4d8",
+    amber: "#fbbf24"
   };
   
   const mainDivVariants = {
@@ -25,6 +26,7 @@ const SecondaryLink = (props: {
       borderColor: colors.light
     },
     hover: {
+      borderColor: colors.amber
     },
   };
 

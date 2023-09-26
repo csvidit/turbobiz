@@ -109,13 +109,14 @@ const Create = (props: {}) => {
             </div>
           </div>
           <Subtitle>Welcome, {user?.displayName}</Subtitle>
-          <div className="bg-zinc-950 border border-zinc-800 text-zinc-600 px-2 py-1 rounded-md text-sm w-fit flex flex-row space-x-1 items-center flex-wrap">
+          <SecondaryLink external={false} href="/history">History</SecondaryLink>
+          {/* <div className="bg-zinc-950 border border-zinc-800 text-zinc-600 px-2 py-1 rounded-md text-sm w-fit flex flex-row space-x-1 items-center flex-wrap">
             <div>
               <PiInfo size={16} />
             </div>
             <div>coming soon: search histories</div>
-          </div>
-        </div>{" "}
+          </div> */}
+        </div>
         <div className=" flex flex-col space-y-20 lg:flex-row lg:space-y-0 lg:space-x-16">
           <div className="flex flex-col space-y-8 lg:w-1/3">
             {" "}
