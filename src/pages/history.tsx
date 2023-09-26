@@ -40,6 +40,10 @@ export default function Home() {
         console.log("LOG DOCSNAP",docSnap.data());
         setHistory(docSnap.data().historyv1);
       }
+      else
+      {
+        setHistory([]);
+      }
     };
     if (user != null && user != undefined) {
       console.log("INSIDE IF CONDITION OF USEEFECT")
