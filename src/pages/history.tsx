@@ -24,7 +24,7 @@ export interface History {
   createdTime: number;
 }
 
-export default function Home(props: {}) {
+export default function Home() {
   const [loading, setLoading] = useState(true);
   const [history, setHistory] = useState([]);
   const user = useContext(AuthContext);

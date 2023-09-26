@@ -18,7 +18,7 @@ const firebaseConfig = {
 
   // auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
 
-  clientEmail: process.env.NEXT_PUBLIC_FIREBASE_CLIENT_EMAIL,
+  // clientEmail: process.env.NEXT_PUBLIC_FIREBASE_CLIENT_EMAIL,
 };
 
 // const firebaseAdminConfig = {
