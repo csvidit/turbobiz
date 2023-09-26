@@ -32,6 +32,4 @@ const firebaseConfig = {
 // export const admin = !(firebaseAdmin.apps.length) ? firebaseAdmin.initializeApp(firebaseAdminConfig) : firebaseAdmin.app;
 export const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 export const auth = getAuth(app);
-export const firestore = initializeFirestore(app, {
-  experimentalAutoDetectLongPolling: true
-});
+export const firestore = getFirestore(app);
