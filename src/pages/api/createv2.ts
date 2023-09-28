@@ -36,7 +36,7 @@ export default async function handler(
           isRemote
             ? "It should be possible to operate this business completely remotely."
             : ""
-        } I want you to format your answer as a JavaScript object in this format: {name: Suggested name of the business, description: A short description of the business, domains: An array of possible domain names
+        } I want you to format your answer as a JSON object in this format: {name: Suggested name of the business, description: A short description of the business, domains: An array of possible domain names
         }`,
       },
     ];
@@ -48,8 +48,10 @@ export default async function handler(
       .then((completion) => {
         const rawResponse = completion.data.choices[0].message?.content!;
         rawResponse.trim();
+        console.log("RAW RESPONSE", rawResponse)
         console.log(completion.data.choices[0].message?.content!);
         const response: OpenAiResponse = JSON.parse(rawResponse);
+        console.log(response);
         if (response != undefined) {
           res.status(200).json({
             businessName: response.name,
