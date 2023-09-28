@@ -7,9 +7,7 @@ import { User } from "firebase/auth";
 import { PiShootingStarDuotone } from "react-icons/pi";
 import { AuthContext } from "@/AuthContext";
 
-const Hero = (props: {
-}) => {
-
+const Hero = (props: {}) => {
   const user = useContext(AuthContext);
 
   return (
@@ -19,17 +17,13 @@ const Hero = (props: {
         <div className="flex flex-row space-x-2 items-center">
           <Title>turbobiz</Title>
           <div className="px-1 py-0.5 rounded text-xs bg-zinc-950 border border-zinc-800 text-amber-400 text-opacity-60">
-            beta
+            version 2 (beta)
           </div>
         </div>
       </div>
       <Subtitle>leverage the power of ai and create a business. fast.</Subtitle>
       {user == undefined || null ? (
-        <SignIn
-          variant="fill"
-        >
-          Sign in to continue
-        </SignIn>
+        <SignIn variant="fill">Sign in to continue</SignIn>
       ) : (
         <PrimaryLink variant="fill" href="/create" external={false}>
           Start Creating

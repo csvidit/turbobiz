@@ -37,7 +37,7 @@ const Create = (props: {}) => {
   const createHandler = async () => {
     setLoading(true);
     await axios
-      .post("/api/create", {
+      .post("/api/createv2", {
         params: {
           category: categoryName,
           country: selectedCountry,
@@ -103,9 +103,9 @@ const Create = (props: {}) => {
             <PiShootingStarDuotone size={32} />
             <div className="flex flex-row space-x-2 items-baseline">
               <Title>turbobiz</Title>
-              {/* <div className="px-1 py-0.5 rounded text-xs bg-zinc-950 border border-zinc-800 text-amber-400 text-opacity-60">
-                beta
-              </div> */}
+              <div className="px-1 py-0.5 rounded text-xs bg-zinc-950 border border-zinc-800 text-amber-400 text-opacity-60">
+                version 2 (beta)
+              </div>
             </div>
           </div>
           <Subtitle>Welcome, {user?.displayName}</Subtitle>
