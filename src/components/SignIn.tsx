@@ -71,8 +71,6 @@ const SignIn = (props: {
       transition={{
         type: "tween",
         duration: 0.2,
-        damping: 20,
-        stiffness: 200,
       }}
     >
       <button

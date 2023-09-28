@@ -75,8 +75,6 @@ import { PiArrowUpRight, PiArrowRight } from "react-icons/pi";
         transition={{
           type: "tween",
           duration: 0.2,
-          damping: 20,
-          stiffness: 200,
         }}
       >
         <Link
