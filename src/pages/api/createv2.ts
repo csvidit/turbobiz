@@ -4,14 +4,6 @@ import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ChatCompletionRequestMessage } from "openai";
 
-const isEmpty = (str: string) => {
-  if (str === "" || str === " " || str === "\n") {
-    return true;
-  } else {
-    return false;
-  }
-};
-
 type OpenAiResponse = {
   name: string;
   description: string;
@@ -53,7 +45,7 @@ export default async function handler(
         model: "gpt-4",
         messages: prompt,
       })
-      .then(async (completion) => {
+      .then((completion) => {
         const rawResponse = completion.data.choices[0].message?.content!;
         rawResponse.trim();
         console.log(completion.data.choices[0].message?.content!);
