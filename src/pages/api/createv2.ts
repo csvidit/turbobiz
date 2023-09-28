@@ -42,7 +42,7 @@ export default async function handler(
     ];
     await openai
       .createChatCompletion({
-        model: "gpt-4",
+        model: "gpt-3.5-turbo",
         messages: prompt,
       })
       .then((completion) => {
