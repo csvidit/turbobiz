@@ -4,7 +4,7 @@ const MotionTransition = (props: { children: React.ReactNode }) => {
   return (
     <MotionConfig
       transition={{
-        type: "just",
+        // type: "just",
         duration: 0.2,
         ease: "easeInOut",
       }}

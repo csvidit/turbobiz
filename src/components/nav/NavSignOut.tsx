@@ -27,7 +27,7 @@ const NavSignOut = (props: {
       }}
     >
       <div className="flex flex-row lg:space-x-1 items-center">
-        <div className="hidden lg:flexborder-r px-1 border-amber-400 group-hover:border-zinc-900 transition-all duration-200 ease-in-out">
+        <div className="hidden lg:flex border-r px-1 border-amber-400 group-hover:border-zinc-900 transition-all duration-200 ease-in-out">
           {user?.displayName}
         </div>
         <div>sign out</div>

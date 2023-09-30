@@ -20,7 +20,7 @@ const HistoryModal = (props: {
     <AnimatePresence>
       <MotionConfig
         transition={{
-          type: "just",
+          // type: "just",
           duration: 0.2,
           ease: "easeInOut",
         }}
