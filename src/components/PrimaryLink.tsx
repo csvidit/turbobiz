@@ -1,12 +1,12 @@
 import {
     motion,
     AnimatePresence,
-    MotionConfig,
   } from "framer-motion";
   import Link from "next/link";
 import { PiArrowUpRight, PiArrowRight } from "react-icons/pi";
 
   import { UrlObject } from "url";
+import MotionTransition from "./MotionTransition";
 
   const colors = {
     dark: "#171717",
@@ -71,12 +71,7 @@ import { PiArrowUpRight, PiArrowRight } from "react-icons/pi";
     };
   
     return (
-      <MotionConfig
-        transition={{
-          type: "tween",
-          duration: 0.2,
-        }}
-      >
+      <MotionTransition>
         <Link
           href={props.href}
           className={`flex bg-opacity-100 w-fit`}
@@ -120,7 +115,7 @@ import { PiArrowUpRight, PiArrowRight } from "react-icons/pi";
             </AnimatePresence>
           </motion.div>
         </Link>
-      </MotionConfig>
+      </MotionTransition>
     );
   };
   

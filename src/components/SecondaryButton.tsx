@@ -1,9 +1,9 @@
 import {
     motion,
     AnimatePresence,
-    MotionConfig,
   } from "framer-motion";
   import { PiArrowUpRight, PiArrowRight } from "react-icons/pi";
+import MotionTransition from "./MotionTransition";
 
   const SecondaryButton = (props: {
     children: React.ReactNode;
@@ -54,12 +54,7 @@ import {
     };
   
     return (
-      <MotionConfig
-        transition={{
-          type: "tween",
-          duration: 0.2,
-        }}
-      >
+      <MotionTransition>
         <motion.button
           onClick={props.onClick}
           className={`flex bg-opacity-100 ${props.inline ? "inline flex-wrap w-fit" : "w-fit"} ${props.className}`}
@@ -100,7 +95,7 @@ import {
             </motion.div>
           </motion.div>
         </motion.button>
-      </MotionConfig>
+      </MotionTransition>
     );
   };
   

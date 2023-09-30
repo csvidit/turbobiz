@@ -2,9 +2,9 @@ import {
     motion,
     AnimatePresence,
     useReducedMotion,
-    MotionConfig,
   } from "framer-motion";
 import { PiArrowRight, PiArrowUpRight } from "react-icons/pi";
+import MotionTransition from "./MotionTransition";
 
   const colors = {
     dark: "#171717",
@@ -69,12 +69,7 @@ import { PiArrowRight, PiArrowUpRight } from "react-icons/pi";
     };
   
     return (
-      <MotionConfig
-        transition={{
-          type: "tween",
-          duration: 0.2,
-        }}
-      >
+      <MotionTransition>
         <motion.button
           onClick={props.onClick}
           className={`flex bg-opacity-100 w-fit ${props.className}`}
@@ -118,7 +113,7 @@ import { PiArrowRight, PiArrowUpRight } from "react-icons/pi";
             </AnimatePresence> */}
           </motion.div>
         </motion.button>
-      </MotionConfig>
+      </MotionTransition>
     );
   };
   

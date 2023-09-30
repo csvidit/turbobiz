@@ -37,19 +37,19 @@ const Nav = (props: {
             <motion.div
               layout
               style={{
-                // borderRadius: isOpen ? "16px" : "9999px",
-                borderBottom: "1px solid #52525b",
+                borderRadius: "0.5rem",
+                border: "1px solid #27272a",
               }}
-              className={`z-40 flex flex-col absolute top-5 lg:top-10 w-11/12 lg:w-10/12 items-start bg-zinc-900`}
+              className={`z-40 flex flex-col absolute top-5 lg:top-10 w-11/12 lg:w-10/12 rounded-lg items-start bg-zinc-950`}
             >
-              <AnimatePresence mode="popLayout">
+              <AnimatePresence mode="popLayout"> 
                 <motion.div
                   layout
                   className="flex w-full flex-row items-center self-center justify-between"
                 >
                   <motion.div
                     layout
-                    className="flex flex-row space-x-2 items-center text-amber-400"
+                    className="ml-2.5 flex flex-row space-x-2 items-center text-amber-400"
                   >
                     <PiShootingStarDuotone />
                     

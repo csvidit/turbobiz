@@ -1,11 +1,8 @@
-import {
-  motion,
-  AnimatePresence,
-  MotionConfig,
-} from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { PiArrowUpRight, PiArrowRight } from "react-icons/pi";
 import { UrlObject } from "url";
+import MotionTransition from "./MotionTransition";
 
 const SecondaryLink = (props: {
   children: React.ReactNode;
@@ -17,16 +14,16 @@ const SecondaryLink = (props: {
   const colors = {
     dark: "#52525b",
     light: "#d4d4d8",
-    amber: "#fbbf24"
+    amber: "#fbbf24",
   };
-  
+
   const mainDivVariants = {
     initial: {
       color: colors.light,
-      borderColor: colors.light
+      borderColor: colors.light,
     },
     hover: {
-      borderColor: colors.amber
+      borderColor: colors.amber,
     },
   };
 
@@ -56,15 +53,12 @@ const SecondaryLink = (props: {
   };
 
   return (
-    <MotionConfig
-      transition={{
-        type: "tween",
-        duration: 0.2,
-      }}
-    >
+    <MotionTransition>
       <Link
         href={props.href}
-        className={`flex bg-opacity-100 ${props.inline ? "inline flex-wrap w-fit" : "w-full"} ${props.className}`}
+        className={`flex bg-opacity-100 ${
+          props.inline ? "inline flex-wrap w-fit" : "w-full"
+        } ${props.className}`}
         target={props.external ? "_blank" : ""}
       >
         <motion.div
@@ -72,7 +66,9 @@ const SecondaryLink = (props: {
           initial="initial"
           whileHover="hover"
           layout
-          className={`group w-fit h-full flex flex-row ${props.inline ? "inline flex-wrap" : ""} items-center group justify-start space-x-2 border-b overflow-hidden font-light`}
+          className={`group w-fit h-full flex flex-row ${
+            props.inline ? "inline flex-wrap" : ""
+          } items-center group justify-start space-x-2 border-b overflow-hidden font-light`}
         >
           <motion.div className={`flex flex-col overflow-hidden`}>
             <AnimatePresence mode="popLayout">
@@ -98,11 +94,11 @@ const SecondaryLink = (props: {
             layout
             className={`flex flex-row items-center space-x-2`}
           >
-           {props.external === true ? <PiArrowUpRight /> : <PiArrowRight />}
+            {props.external === true ? <PiArrowUpRight /> : <PiArrowRight />}
           </motion.div>
         </motion.div>
       </Link>
-    </MotionConfig>
+    </MotionTransition>
   );
 };
 

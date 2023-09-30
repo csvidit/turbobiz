@@ -5,7 +5,7 @@ const NavLinks = (props: { isOpen: boolean }) => {
   return (
     <AnimatePresence>
       {props.isOpen && (
-        <motion.div layout className={`w-full flex-col my-2 text-sm`}>
+        <motion.div layout className={`w-full flex-col my-2.5 text-sm ml-2.5`}>
           <AnimatePresence>
             <motion.div
               layout

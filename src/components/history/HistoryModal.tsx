@@ -20,10 +20,11 @@ const HistoryModal = (props: {
     <AnimatePresence>
       <MotionConfig
         transition={{
-          type: "spring",
+          type: "just",
           duration: 0.2,
-          damping: 20,
-          stiffness: 200,
+          ease: "easeInOut"
+          // damping: 20,
+          // stiffness: 200,
         }}
       >
         <LayoutGroup>

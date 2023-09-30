@@ -14,7 +14,7 @@ const NavSignOut = (props: {
   const dispatch = useContext(AuthDispatchContext);
   return (
     <button
-      className={`group h-full group px-2 py-1 flex flex-row space-x-1 items-center group justify-between rounded-md bg-zinc-900 text-amber-400 hover:bg-amber-400 hover:text-zinc-900 transition-all duration-200 ease-in-out text-sm overflow-hidden font-light`}
+      className={`group h-full group px-2 py-1 flex flex-row space-x-1 items-center group justify-between rounded-md bg-zinc-900 border border-zinc-700 text-amber-400 hover:bg-amber-400 hover:text-zinc-900 transition-all duration-200 ease-in-out text-sm overflow-hidden font-light`}
       onClick={() => {
         signOut(auth)
           .then(() => {
@@ -26,11 +26,11 @@ const NavSignOut = (props: {
         router.push("/");
       }}
     >
-      <div className="flex flex-row space-x-1 items-center">
-        <div className="border-r px-1 border-amber-400 group-hover:border-zinc-900 transition-all duration-200 ease-in-out">
+      <div className="flex flex-row lg:space-x-1 items-center">
+        <div className="hidden lg:flexborder-r px-1 border-amber-400 group-hover:border-zinc-900 transition-all duration-200 ease-in-out">
           {user?.displayName}
         </div>
-        <div>Sign Out</div>
+        <div>sign out</div>
       </div>
     </button>
   );

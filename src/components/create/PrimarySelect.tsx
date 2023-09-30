@@ -39,11 +39,6 @@ const PrimarySelect = (props: {
         className="bg-zinc-900 border w-full border-zinc-300 text-zinc-300 rounded-lg focus:ring-amber-400 focus:border-amber-400 block p-2 dark:placeholder-zinc-300"
         value={props.selectedCategory}
         onChange={(e) => {
-          // console.log("SELECT CHANGE TARGET VALUE", e.target.value);
-          // console.log(
-          //   "SELECTED CATEGORY",
-          //   categories[parseInt(e.target.value)].name
-          // );
           props.setSelectedCategory(parseInt(e.target.value));
           props.setCategoryName(categories[parseInt(e.target.value)].name);
         }}

@@ -1,9 +1,10 @@
 import { auth } from "@/firebase.config";
-import { motion, AnimatePresence, MotionConfig } from "framer-motion";
-import { GoogleAuthProvider, User, signInWithPopup } from "firebase/auth";
-import { Dispatch, SetStateAction, useContext } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useContext } from "react";
 import { PiGoogleLogoBold } from "react-icons/pi";
 import { AuthDispatchContext } from "@/AuthContext";
+import MotionTransition from "./MotionTransition";
 
 const colors = {
   dark: "#171717",
@@ -67,12 +68,7 @@ const SignIn = (props: {
   };
 
   return (
-    <MotionConfig
-      transition={{
-        type: "tween",
-        duration: 0.2,
-      }}
-    >
+   <MotionTransition>
       <button
         onClick={async () => {
           await signInWithPopup(auth, new GoogleAuthProvider())
@@ -116,7 +112,7 @@ const SignIn = (props: {
           </motion.div>
         </motion.div>
       </button>
-    </MotionConfig>
+    </MotionTransition>
   );
 };
 
