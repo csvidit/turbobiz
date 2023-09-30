@@ -109,7 +109,7 @@ const About = () => {
           </li>
           <li>
             App-level Unique Identifier or <Code>uid</Code>: Unique to the
-            user's account on Turbobiz.
+            user&apos;s account on Turbobiz.
           </li>
         </ul>
         <p className="uppercase">

@@ -1,4 +1,4 @@
-import { MotionConfig } from "framer-motion";``
+import { MotionConfig } from "framer-motion";
 
 const MotionTransition = (props: { children: React.ReactNode }) => {
   return (

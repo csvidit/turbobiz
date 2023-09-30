@@ -22,9 +22,7 @@ const HistoryModal = (props: {
         transition={{
           type: "just",
           duration: 0.2,
-          ease: "easeInOut"
-          // damping: 20,
-          // stiffness: 200,
+          ease: "easeInOut",
         }}
       >
         <LayoutGroup>
