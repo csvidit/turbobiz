@@ -48,10 +48,10 @@ export default async function handler(
       .then((completion) => {
         const rawResponse = completion.data.choices[0].message?.content!;
         rawResponse.trim();
-        console.log("RAW RESPONSE", rawResponse)
-        console.log(completion.data.choices[0].message?.content!);
+        // console.log("RAW RESPONSE", rawResponse)
+        // console.log(completion.data.choices[0].message?.content!);
         const response: OpenAiResponse = JSON.parse(rawResponse);
-        console.log(response);
+        // console.log(response);
         if (response != undefined) {
           res.status(200).json({
             businessName: response.name,
