@@ -11,6 +11,7 @@ const CountrySelect = (props: {
       <label htmlFor="countries" className="flex flex-row space-x-2 items-center text-zinc-300">
         <PiGlobeHemisphereEastDuotone size={24} />
         <Subtitle>target country</Subtitle>
+        <div>{countries.length}</div>
       </label>
       <select
         id="countries"
@@ -32,7 +33,7 @@ const CountrySelect = (props: {
 
 export default CountrySelect;
 
-const countries = [
+export const countries = [
     "Select...",
     "Afghanistan",
     "Albania",

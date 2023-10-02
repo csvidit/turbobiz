@@ -13,6 +13,9 @@ export default async function handler(
     const userHistoryRef = doc(firestore, "users", uid);
     const docSnap = await getDoc(userHistoryRef);
     if (docSnap.exists()) {
+      if (!docSnap.data().historyv1) {
+        return res.status(200).json({ history: [] });
+      }
       return res.status(200).json({ history: docSnap.data().historyv1 });
     } else {
       return res.status(200).json({ history: [] });

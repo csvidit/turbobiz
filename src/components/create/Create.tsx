@@ -1,5 +1,5 @@
-import { PiShootingStarDuotone } from "react-icons/pi";
-import PrimarySelect from "./PrimarySelect";
+import { PiShootingStarDuotone, PiSparkleDuotone } from "react-icons/pi";
+import PrimarySelect, { categories } from "./PrimarySelect";
 import Title from "../Title";
 import Subtitle from "../Subtitle";
 import { useContext, useState } from "react";
@@ -7,12 +7,14 @@ import PrimaryButton from "../PrimaryButton";
 import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import axios from "axios";
 import BusinessName from "./BusinessName";
-import CountrySelect from "./CountrySelect";
+import CountrySelect, { countries } from "./CountrySelect";
 import RemoteCheckbox from "./RemoteCheckbox";
 import BusinessSizeSlider from "./BusinessSizeSlider";
 import CreateLoading from "./CreateLoading";
 import { AuthContext } from "@/AuthContext";
 import SecondaryLink from "../SecondaryLink";
+import { random } from "lodash";
+import RandomButton from "./Random";
 
 type ResponseData = {
   businessName: string;
@@ -52,6 +54,14 @@ const Create = (props: {}) => {
       .catch((error) => console.log("CLIENT SIDE ERROR", error));
   };
 
+  const randomHandler = async () => {
+    setSelectedCategory(random(1, 13));
+    setCategoryName(categories[selectedCategory].name);
+    setSelectedCountry(countries[random(1, countries.length - 1)]);
+    setRemote(random(0, 1) == 1 ? true : false);
+    setBusinessSize(random(0, 2));
+  };
+
   return (
     <MotionConfig
       transition={{
@@ -77,7 +87,7 @@ const Create = (props: {}) => {
         </div>
         <div className=" flex flex-col space-y-20 lg:flex-row lg:space-y-0 lg:space-x-16">
           <div className="flex flex-col space-y-8 lg:w-1/3">
-            {" "}
+            <RandomButton onClick={() => randomHandler()}/>
             <PrimarySelect
               selectedCategory={selectedCategory}
               setSelectedCategory={setSelectedCategory}
