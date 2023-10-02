@@ -1,4 +1,4 @@
-import { PiInfo, PiShootingStarDuotone } from "react-icons/pi";
+import { PiShootingStarDuotone } from "react-icons/pi";
 import PrimarySelect from "./PrimarySelect";
 import Title from "../Title";
 import Subtitle from "../Subtitle";
@@ -13,8 +13,6 @@ import BusinessSizeSlider from "./BusinessSizeSlider";
 import CreateLoading from "./CreateLoading";
 import { AuthContext } from "@/AuthContext";
 import SecondaryLink from "../SecondaryLink";
-import { firestore } from "@/firebase.config";
-import { doc, getDoc, updateDoc, arrayUnion, setDoc } from "firebase/firestore";
 
 type ResponseData = {
   businessName: string;
@@ -40,52 +38,16 @@ const Create = (props: {}) => {
       .post("/api/createv2", {
         params: {
           category: categoryName,
+          categoryId: selectedCategory,
           country: selectedCountry,
           isRemote: isRemote,
           businessSize: businessSize,
           uid: uid,
         },
       })
-      .then( async (response) => {
+      .then(async (response) => {
         setResponseData(response.data);
-        const currTime = new Date().getTime();
-        const userInfoRef = doc(firestore, "users", user!.uid);
-        const docSnap = await getDoc(userInfoRef);
-        const historyJson = {
-          version: 1,
-          category: selectedCategory,
-          country: selectedCountry,
-          isRemote: isRemote,
-          businessSize: businessSize,
-          businessName: response.data.businessName,
-          businessDescription: response.data.businessDescription,
-          businessDomains: response.data.businessDomains,
-          createdTime: currTime,
-        };
-        if (docSnap.exists()) {
-          const userHistoryUpdate = await updateDoc(userInfoRef, {
-            historyv1: arrayUnion(historyJson),
-          })
-            .then((response) => {
-              setLoading(false);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        } else {
-          const docData = { historyv1: [] };
-          const setNewDoc = await setDoc(userInfoRef, docData).then(
-            async (response) => {
-              const userHistoryUpdate = await updateDoc(userInfoRef, {
-                historyv1: arrayUnion(historyJson),
-              })
-                .then((response) => {
-                  setLoading(false);
-                })
-                .catch((error) => console.log(error));
-            }
-          );
-        }
+        setLoading(false);
       })
       .catch((error) => console.log("CLIENT SIDE ERROR", error));
   };
@@ -109,13 +71,9 @@ const Create = (props: {}) => {
             </div>
           </div>
           <Subtitle>Welcome, {user?.displayName}</Subtitle>
-          <SecondaryLink external={false} href="/history">History</SecondaryLink>
-          {/* <div className="bg-zinc-950 border border-zinc-800 text-zinc-600 px-2 py-1 rounded-md text-sm w-fit flex flex-row space-x-1 items-center flex-wrap">
-            <div>
-              <PiInfo size={16} />
-            </div>
-            <div>coming soon: search histories</div>
-          </div> */}
+          <SecondaryLink external={false} href="/history">
+            History
+          </SecondaryLink>
         </div>
         <div className=" flex flex-col space-y-20 lg:flex-row lg:space-y-0 lg:space-x-16">
           <div className="flex flex-col space-y-8 lg:w-1/3">
@@ -194,7 +152,7 @@ const Create = (props: {}) => {
                   <BusinessName>{responseData!.businessName}</BusinessName>
                   <motion.div>{responseData!.businessDescription}</motion.div>
                   <div className="flex flex-col space-y-2">
-                  <div className="text-amber-400">possible domain names:</div>
+                    <div className="text-amber-400">possible domain names:</div>
                     <div>
                       {responseData!.businessDomains.map((x, index) => (
                         <div key={index}>
@@ -222,3 +180,42 @@ const Create = (props: {}) => {
 };
 
 export default Create;
+
+// const currTime = new Date().getTime();
+// const userInfoRef = doc(firestore, "users", user!.uid);
+// const docSnap = await getDoc(userInfoRef);
+// const historyJson = {
+//   version: 1,
+//   category: selectedCategory,
+//   country: selectedCountry,
+//   isRemote: isRemote,
+//   businessSize: businessSize,
+//   businessName: response.data.businessName,
+//   businessDescription: response.data.businessDescription,
+//   businessDomains: response.data.businessDomains,
+//   createdTime: currTime,
+// };
+// if (docSnap.exists()) {
+//   const userHistoryUpdate = await updateDoc(userInfoRef, {
+//     historyv1: arrayUnion(historyJson),
+//   })
+//     .then((response) => {
+//       setLoading(false);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// } else {
+//   const docData = { historyv1: [] };
+//   const setNewDoc = await setDoc(userInfoRef, docData).then(
+//     async (response) => {
+//       const userHistoryUpdate = await updateDoc(userInfoRef, {
+//         historyv1: arrayUnion(historyJson),
+//       })
+//         .then((response) => {
+//           setLoading(false);
+//         })
+//         .catch((error) => console.log(error));
+//     }
+//   );
+// }

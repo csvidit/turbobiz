@@ -1,17 +1,13 @@
 import Head from "next/head";
 import MainContent from "../components/MainContent";
-import Loading from "@/components/Loading";
 import Title from "@/components/Title";
 import { useContext, useEffect, useState } from "react";
-import Subtitle from "@/components/Subtitle";
 import { PiInfo } from "react-icons/pi";
-import { firestore } from "@/firebase.config";
-import { doc, getDoc } from "@firebase/firestore";
 import { AuthContext } from "@/AuthContext";
 import HistoryItem from "@/components/history/HistoryItem";
-import Hero from "@/components/hero/Hero";
 import HistoryHero from "@/components/history/HistoryHero";
 import HistoryLoading from "@/components/history/HistoryLoading";
+import axios from "axios";
 
 export interface History {
   version: number;
@@ -33,15 +29,13 @@ export default function Home() {
   useEffect(() => {
     const fetchHistory = async () => {
       setLoading(true);
-      const userHistoryRef = doc(firestore, "users", user!.uid);
-      const docSnap = await getDoc(userHistoryRef);
-      if (docSnap.exists()) {
-        setLoading(false);
-        setHistory(docSnap.data().historyv1);
-      } else {
-        setLoading(false);
-        setHistory([]);
-      }
+      await axios
+        .post("/api/history", { params: {uid: user?.uid} })
+        .then((response) => {
+          setHistory(response.data.history);
+          setLoading(false);
+        })
+        .catch((error) => console.log("CLIENT SIDE ERROR", error));
     };
     if (user != null && user != undefined) {
       fetchHistory();

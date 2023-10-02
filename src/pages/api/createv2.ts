@@ -17,7 +17,7 @@ export default async function handler(
   if (req.method !== "POST") {
     return res.status(405).json({ error: "METHOD NOT ALLOWED" });
   } else {
-    const { category, country, isRemote, businessSize, uid } = req.body.params;
+    const { category, categoryId, country, isRemote, businessSize, uid } = req.body.params;
     const prompt: ChatCompletionRequestMessage[] = [
       {
         role: "system",
@@ -45,16 +45,59 @@ export default async function handler(
         model: "gpt-3.5-turbo",
         messages: prompt,
       })
-      .then((completion) => {
+      .then(async (completion) => {
         const rawResponse = completion.data.choices[0].message?.content!;
         rawResponse.trim();
-        const response: OpenAiResponse = JSON.parse(rawResponse);
-        if (response != undefined) {
-          res.status(200).json({
-            businessName: response.name,
-            businessDescription: response.description,
-            businessDomains: response.domains,
-          });
+        const responseData: OpenAiResponse = JSON.parse(rawResponse);
+        if (responseData != undefined) {
+          const currTime = new Date().getTime();
+          const userInfoRef = doc(firestore, "users", uid);
+          const docSnap = await getDoc(userInfoRef);
+          const historyJson = {
+            version: 1,
+            category: categoryId,
+            country: country,
+            isRemote: isRemote,
+            businessSize: businessSize,
+            businessName: responseData.name,
+            businessDescription: responseData.description,
+            businessDomains: responseData.domains,
+            createdTime: currTime,
+          };
+          if (docSnap.exists()) {
+            const userHistoryUpdate = await updateDoc(userInfoRef, {
+              historyv1: arrayUnion(historyJson),
+            })
+              .then((response) => {
+                res.status(200).json({
+                  businessName: responseData.name,
+                  businessDescription: responseData.description,
+                  businessDomains: responseData.domains,
+                });
+                // setLoading(false);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          } else {
+            const docData = { historyv1: [] };
+            const setNewDoc = await setDoc(userInfoRef, docData).then(
+              async (response) => {
+                const userHistoryUpdate = await updateDoc(userInfoRef, {
+                  historyv1: arrayUnion(historyJson),
+                })
+                  .then((response) => {
+                    res.status(200).json({
+                      businessName: responseData.name,
+                      businessDescription: responseData.description,
+                      businessDomains: responseData.domains,
+                    });
+                    // setLoading(false);
+                  })
+                  .catch((error) => console.log(error));
+              }
+            );
+          }
         }
       })
       .catch((error) => {
