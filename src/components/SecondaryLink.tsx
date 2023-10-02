@@ -56,8 +56,8 @@ const SecondaryLink = (props: {
     <MotionTransition>
       <Link
         href={props.href}
-        className={`flex bg-opacity-100 ${
-          props.inline ? "inline flex-wrap w-fit" : "w-full"
+        className={`flex bg-opacity-100 w-fit ${
+          props.inline ? "inline flex-wrap" : ""
         } ${props.className}`}
         target={props.external ? "_blank" : ""}
       >
