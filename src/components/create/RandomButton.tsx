@@ -60,7 +60,7 @@ const RandomButton = (props: { onClick: any }) => {
           initial="initial"
           whileHover="hover"
           layout
-          className={`group w-fit h-full px-2 py-1 flex flex-row items-center group bg-gradient-to-b from-neutral-950 to-purple-950 border border-purple-900 hover:border-purple-600 shadow-inner shadow-purple-900 transition-all duration-200 ease-in-out justify-between space-x-2 text-base rounded-md overflow-hidden font-light`}
+          className={`group w-fit h-full px-2 py-1 flex flex-row items-center group bg-gradient-to-b from-neutral-950 to-amber-950 border border-amber-900 hover:border-amber-600 shadow-inner shadow-amber-900 transition-all duration-200 ease-in-out justify-between space-x-2 text-base rounded-md overflow-hidden font-light`}
         >
           <PiSparkleDuotone className="text-amber-400"/>
           <motion.div layout>Random</motion.div>

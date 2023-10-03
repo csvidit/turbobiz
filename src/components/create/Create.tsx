@@ -14,7 +14,7 @@ import CreateLoading from "./CreateLoading";
 import { AuthContext } from "@/AuthContext";
 import SecondaryLink from "../SecondaryLink";
 import { random } from "lodash";
-import RandomButton from "./Random";
+import RandomButton from "./RandomButton";
 
 type ResponseData = {
   businessName: string;
