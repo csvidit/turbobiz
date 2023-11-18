@@ -17,7 +17,7 @@ const SecondaryLink = (props: {
     amber: "#fbbf24",
   };
 
-  const mainDivVariants = {
+  const mainspanVariants = {
     initial: {
       color: colors.light,
       borderColor: colors.light,
@@ -56,47 +56,47 @@ const SecondaryLink = (props: {
     <MotionTransition>
       <Link
         href={props.href}
-        className={`flex bg-opacity-100 w-fit ${
-          props.inline ? "inline flex-wrap" : ""
+        className={`ml-1 bg-opacity-100 w-fit ${
+          props.inline ? "inline-block flex-wrap" : ""
         } ${props.className}`}
         target={props.external ? "_blank" : ""}
       >
-        <motion.div
-          variants={mainDivVariants}
+        <motion.span
+          variants={mainspanVariants}
           initial="initial"
           whileHover="hover"
           layout
           className={`group w-fit h-full flex flex-row ${
-            props.inline ? "inline flex-wrap" : ""
+            props.inline ? "inline-block flex-wrap" : ""
           } items-center group justify-start space-x-2 border-b overflow-hidden font-light`}
         >
-          <motion.div className={`flex flex-col overflow-hidden`}>
+          <motion.span className={`flex flex-col overflow-hidden`}>
             <AnimatePresence mode="popLayout">
-              <motion.div layout variants={textVariants1} className="flex">
+              <motion.span layout variants={textVariants1} className="flex">
                 {props.children}
-              </motion.div>
+              </motion.span>
             </AnimatePresence>
             <AnimatePresence mode="popLayout">
-              <motion.div layout variants={textVariants2} className="flex">
+              <motion.span layout variants={textVariants2} className="flex">
                 {props.children}
-              </motion.div>
+              </motion.span>
             </AnimatePresence>
-          </motion.div>
-          <motion.div
+          </motion.span>
+          <motion.span
             variants={textVariants1}
             layout
             className={`flex flex-row items-center space-x-2`}
           >
             {props.external === true ? <PiArrowUpRight /> : <PiArrowRight />}
-          </motion.div>
-          <motion.div
+          </motion.span>
+          <motion.span
             variants={textVariants2}
             layout
             className={`flex flex-row items-center space-x-2`}
           >
             {props.external === true ? <PiArrowUpRight /> : <PiArrowRight />}
-          </motion.div>
-        </motion.div>
+          </motion.span>
+        </motion.span>
       </Link>
     </MotionTransition>
   );
