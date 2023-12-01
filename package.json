@@ -30,7 +30,7 @@
     "next": "13.1.5",
     "next-firebase-auth": "^1.0.0-beta.0",
     "nookies": "^2.5.2",
-    "openai": "^3.3.0",
+    "openai": "^4.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-firebase-hooks": "^5.1.1",

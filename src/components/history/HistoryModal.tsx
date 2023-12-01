@@ -36,7 +36,7 @@ const HistoryModal = (props: {
             >
               <motion.div
                 layout
-                className="relative w-11/12 h-11/12 lg:w-1/2 lg:h-1/2 h-fit p-4 flex flex-col space-y-2 bg-zinc-950 rounded-md border border-opacity-30 border-amber-400"
+                className="relative w-11/12 h-11/12 lg:w-1/2 lg:h-1/2 lg:min-h-max p-4 flex flex-col space-y-2 bg-zinc-950 rounded-md border border-opacity-30 border-amber-400"
               >
                 <div className="absolute right-4 top-4">
                   <PrimaryButton
@@ -55,21 +55,19 @@ const HistoryModal = (props: {
                 <BusinessName>{props.data.businessName}</BusinessName>
                 <motion.div>{props.data.businessDescription}</motion.div>
                 <div className="text-amber-400">possible domain names:</div>
-                <div>
-                  {props.data.businessDomains.map((x, index) => (
-                    <div key={index}>
-                      <SecondaryLink
-                        external={true}
-                        href={`https://www.namecheap.com/domains/registration/results/?domain=${x.replace(
-                          /['"]/g,
-                          ""
-                        )}`}
-                      >
-                        {x.replace(/['"]/g, "")}
-                      </SecondaryLink>
-                    </div>
-                  ))}
-                </div>
+
+                {props.data.businessDomains.map((x, index) => (
+                  <SecondaryLink
+                    key={index}
+                    external={true}
+                    href={`https://www.namecheap.com/domains/registration/results/?domain=${x.replace(
+                      /['"]/g,
+                      ""
+                    )}`}
+                  >
+                    {x.replace(/['"]/g, "")}
+                  </SecondaryLink>
+                ))}
               </motion.div>
             </motion.div>
           </AnimatePresence>

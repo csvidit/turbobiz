@@ -66,7 +66,7 @@ const SecondaryLink = (props: {
           initial="initial"
           whileHover="hover"
           layout
-          className={`group w-fit h-full flex flex-row ${
+          className={`group w-fit flex flex-row ${
             props.inline ? "inline-block flex-wrap" : ""
           } items-center group justify-start space-x-2 border-b overflow-hidden font-light`}
         >
